@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xavier Academy Tihar Festival | Pani Puri</title>
+<style>
+:root{--red:#861b2a;--gold:#f5c35c;--cream:#fff8eb;--green:#247448}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:#30251e;font-family:Arial,sans-serif}
+header{background:linear-gradient(135deg,#5e101d,#a52d38);color:white;text-align:center;padding:35px 15px;border-bottom:5px solid var(--gold)}
+header h1{margin:10px 0;font-size:29px}
+header h2{color:#ffdf91;margin:5px}
+.tag{display:inline-block;background:var(--gold);color:#50121d;padding:7px 15px;border-radius:25px;font-weight:bold}
+nav{background:white;padding:13px;text-align:center;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0001}
+nav a{color:var(--red);font-weight:bold;text-decoration:none;margin:0 12px}
+.container{max-width:1050px;margin:auto;padding:18px}
+h2,h3{color:var(--red)}
+.notice{background:#fff0c8;padding:15px;border-radius:10px;margin:15px 0;text-align:center}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card,.panel{background:white;padding:18px;border:1px solid #eadfc9;border-radius:14px;box-shadow:0 3px 10px #00000009}
+.card h3{margin:0 0 8px}
+.muted{font-size:14px;color:#766b60}
+.price{font-weight:bold;line-height:1.8;margin:12px 0}
+select,input{width:100%;padding:12px;margin:7px 0 14px;border:1px solid #d7c9b5;border-radius:8px;font-size:15px}
+button{border:0;border-radius:8px;padding:13px 16px;font-weight:bold;cursor:pointer;font-size:15px}
+.add{background:var(--red);color:white;width:100%}
+.primary{background:var(--green);color:white;width:100%;padding:15px}
+.secondary{background:#eee;color:#333;width:100%;margin-top:8px}
+.cart-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eee}
+.qty button{padding:5px 10px;background:#eee}
+.total{font-size:24px;font-weight:bold;color:var(--red);margin:15px 0}
+.qr{display:block;width:260px;max-width:100%;margin:15px auto;border:1px solid #ddd;border-radius:8px}
+.hidden{display:none}
+.ticket{border:2px dashed var(--gold);padding:18px;border-radius:12px;margin:15px 0}
+.ticket-number{text-align:center;font-size:26px;font-weight:bold;color:var(--red);background:#fff3d9;padding:12px}
+.green-note{background:#edf8ef;padding:15px;border-radius:10px;margin:12px 0}
+footer{text-align:center;padding:25px;color:#766b60}
+@media(max-width:550px){header h1{font-size:24px}.container{padding:12px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tag">ONE DAY FESTIVAL SPECIAL</div>
+  <h1>🎉 XAVIER ACADEMY 🎉</h1>
+  <h2>🪔 TIHAR FESTIVAL 🪔</h2>
+  <h2 style="color:white">PANI PURI STALL</h2>
+  <p>Choose your favourite • Pay by QR • Collect at our stall!</p>
+</header>
+
+<nav>
+  <a href="#menu">Menu</a>
+  <a href="#cart">My Cart</a>
+  <a href="lucky-draw.html">🎁 Lucky Draw</a>
+</nav>
+
+<main class="container">
+  <div class="notice">
+    <strong>🪔 Happy Tihar!</strong><br>
+    Enjoy our special pani puri menu. Order online and show your ticket at our stall.
+  </div>
+
+  <section id="menu">
+    <h2>🥣 Our Pani Puri Menu</h2>
+    <div class="menu" id="menuItems"></div>
+  </section>
+
+  <section class="panel" id="cart" style="margin-top:22px">
+    <h2>🛒 Your Shopping Cart</h2>
+    <div id="cartItems">Your cart is empty.</div>
+    <div class="total" id="cartTotal">Total: NPR 0</div>
+    <button class="primary" onclick="openCheckout()">Proceed to Checkout</button>
+  </section>
+
+  <section class="panel hidden" id="checkout" style="margin-top:22px">
+    <h2>🧾 Checkout</h2>
+    <label for="customerName">Your name</label>
+    <input id="customerName" maxlength="60" placeholder="Enter your name">
+
+    <label for="customerPhone">Your mobile number</label>
+    <input id="customerPhone" maxlength="15" placeholder="98XXXXXXXX">
+
+    <h3>💳 Pay with Kumari Bank</h3>
+    <p>Scan the QR code and pay the exact total shown below.</p>
+    <img src="qr-code.png" class="qr" alt="Kumari Bank payment QR code">
+
+    <div class="notice">
+      <strong>Amount to pay</strong>
+      <div class="total" id="checkoutTotal">NPR 0</div>
+      Please check the amount before making payment.
+    </div>
+
+    <p class="muted">
+      After paying, press the WhatsApp button below. WhatsApp will open with
+      your order details. Please attach your payment screenshot before sending.
+    </p>
+
+    <button class="primary" onclick="createTicketAndWhatsApp()">
+      PAY & SEND ORDER THROUGH WHATSAPP
+    </button>
+    <button class="secondary" onclick="closeCheckout()">Back to Cart</button>
+  </section>
+
+  <section class="panel hidden" id="ticketSection" style="margin-top:22px">
+    <h2 style="text-align:center">🎟️ Your Order Ticket</h2>
+    <div class="ticket">
+      <div class="ticket-number" id="ticketNumber"></div>
+      <div id="ticketDetails"></div>
+      <p><strong>Payment:</strong> Awaiting stall verification</p>
+    </div>
+    <div class="green-note">
+      <strong>Before sending your order:</strong>
+      <ol>
+        <li>Make your QR payment.</li>
+        <li>Attach your payment screenshot in WhatsApp.</li>
+        <li>Send the pre-filled order message.</li>
+        <li>Show your ticket number at the stall.</li>
+      </ol>
+    </div>
+    <button class="primary" onclick="openWhatsAppAgain()">SEND ORDER & PAYMENT PROOF</button>
+  </section>
+
+  <section class="panel" style="margin-top:22px">
+    <h2>🥗 Dietary Information</h2>
+    <p><strong>Vegetarian options:</strong> Normal, Cheese (if vegetarian-set cheese), Chocolate, Fruity, Daal and Dahi.</p>
+    <p><strong>Non-vegetarian options:</strong> Chicken Keema and Buff Keema.</p>
+    <p><strong>Allergens:</strong> Puri may contain wheat/gluten. Cheese and Dahi contain milk. Chocolate may contain milk or soy. Other ingredients and shared preparation surfaces may introduce additional allergens or cross-contact.</p>
+    <p class="muted">Please tell our stall team about allergies before ordering. We cannot guarantee an allergen-free preparation area.</p>
+  </section>
+
+  <div class="notice">
+    🎁 Interested in winning a smartwatch?
+    <br><a href="lucky-draw.html"><strong>Enter the Xavier Academy Tihar Lucky Draw here →</strong></a>
+  </div>
+</main>
+
+<footer>
+  <strong>Xavier Academy Tihar Festival</strong>
+  <p>Thank you for supporting our Pani Puri Stall! 🪔</p>
+</footer>
+
+<script>
+const WHATSAPP_NUMBER = "9779740296336";
+
+const products = [
+ {id:"normal",name:"Normal Pani Puri",desc:"Potato, vegetables and tangy pani.",options:[["3 Pieces",50],["8 Pieces",100]]},
+ {id:"cheese",name:"Cheese Pani Puri",desc:"Potato filling, cheese and tomato sauce.",options:[["3 Pieces",100],["8 Pieces",200]]},
+ {id:"chocolate",name:"Chocolate Pani Puri",desc:"Potato, chocolate syrup and crushed Cadbury chocolate.",options:[["3 Pieces",150],["5 Pieces",200]]},
+ {id:"chicken",name:"Chicken Keema Pani Puri",desc:"Chicken keema, potato and momo-style jhol achar.",options:[["3 Pieces",90],["8 Pieces",200]]},
+ {id:"buff",name:"Buff Keema Pani Puri",desc:"Buff keema, potato and momo-style jhol achar.",options:[["3 Pieces",80],["8 Pieces",180]]},
+ {id:"fruity",name:"Fruity Pani Puri",desc:"Pomegranate, minced fruits and sugarcane juice gravy.",options:[["3 Pieces",150],["5 Pieces",200]]},
+ {id:"daal",name:"Daal Pani Puri",desc:"Potato, chana daal and red-lentil jhol.",options:[["3 Pieces",50],["8 Pieces",100]]},
+ {id:"dahi",name:"Dahi Puri",desc:"Puri with yoghurt topping.",options:[["3 Pieces",100],["8 Pieces",200]]}
+];
+
+let cart=[];
+let currentTicket=null;
+
+function renderMenu(){
+ document.getElementById("menuItems").innerHTML=products.map(p=>`
+  <div class="card">
+   <h3>${p.name}</h3>
+   <p class="muted">${p.desc}</p>
+   <div class="price">${p.options.map(o=>o[0]+": NPR "+o[1]).join("<br>")}</div>
+   <select id="size-${p.id}">
+    ${p.options.map((o,i)=>`<option value="${i}">${o[0]} — NPR ${o[1]}</option>`).join("")}
+   </select>
+   <button class="add" onclick="addItem('${p.id}')">+ Add to Cart</button>
+  </div>`).join("");
+}
+
+function addItem(id){
+ const p=products.find(x=>x.id===id);
+ const n=Number(document.getElementById("size-"+id).value);
+ const o=p.options[n],key=id+"-"+n;
+ const found=cart.find(x=>x.key===key);
+ if(found)found.qty++;
+ else cart.push({key,name:p.name,size:o[0],price:o[1],qty:1});
+ renderCart();
+}
+
+function changeQty(key,n){
+ const item=cart.find(x=>x.key===key);
+ if(!item)return;
+ item.qty+=n;
+ if(item.qty<=0)cart=cart.filter(x=>x.key!==key);
+ renderCart();
+}
+
+function total(){return cart.reduce((s,x)=>s+x.price*x.qty,0)}
+
+function renderCart(){
+ const el=document.getElementById("cartItems");
+ if(!cart.length)el.textContent="Your cart is empty.";
+ else el.innerHTML=cart.map(x=>`
+  <div class="cart-row">
+   <div><strong>${x.name}</strong><br><small>${x.size} · NPR ${x.price}</small></div>
+   <div class="qty">
+    <button onclick="changeQty('${x.key}',-1)">−</button>
+    ${x.qty}
+    <button onclick="changeQty('${x.key}',1)">+</button>
+    <strong> NPR ${x.price*x.qty}</strong>
+   </div>
+  </div>`).join("");
+ document.getElementById("cartTotal").textContent="Total: NPR "+total();
+}
+
+function openCheckout(){
+ if(!cart.length)return alert("Please add items to your cart first.");
+ document.getElementById("checkoutTotal").textContent="NPR "+total();
+ document.getElementById("checkout").classList.remove("hidden");
+ document.getElementById("checkout").scrollIntoView({behavior:"smooth"});
+}
+
+function closeCheckout(){document.getElementById("checkout").classList.add("hidden")}
+
+function makeTicket(){
+ return "XAT-"+Date.now().toString(36).toUpperCase()+"-"+Math.random().toString(36).slice(2,5).toUpperCase();
+}
+
+function safe(s){
+ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function createTicketAndWhatsApp(){
+ const name=document.getElementById("customerName").value.trim();
+ const phone=document.getElementById("customerPhone").value.trim();
+ if(!name||!phone)return alert("Please enter your name and phone number.");
+ if(!/^[0-9+\-\s]{7,15}$/.test(phone))return alert("Please enter a valid phone number.");
+ if(!cart.length)return alert("Your cart is empty.");
+
+ currentTicket={
+  id:makeTicket(),name,phone,
+  items:cart.map(x=>({...x})),
+  total:total()
+ };
+
+ document.getElementById("ticketNumber").textContent=currentTicket.id;
+ document.getElementById("ticketDetails").innerHTML=`
+  <p><strong>Name:</strong> ${safe(name)}</p>
+  <p><strong>Phone:</strong> ${safe(phone)}</p><hr>
+  ${currentTicket.items.map(x=>`<p>${safe(x.name)} — ${safe(x.size)} × ${x.qty}: NPR ${x.price*x.qty}</p>`).join("")}
+  <hr><h3>Total: NPR ${currentTicket.total}</h3>
+ `;
+
+ document.getElementById("checkout").classList.add("hidden");
+ document.getElementById("ticketSection").classList.remove("hidden");
+ document.getElementById("ticketSection").scrollIntoView({behavior:"smooth"});
+ openWhatsAppAgain();
+}
+
+function openWhatsAppAgain(){
+ if(!currentTicket)return;
+ const lines=currentTicket.items.map(x=>
+  `${x.name} (${x.size}) x ${x.qty} = NPR ${x.price*x.qty}`
+ ).join("\n");
+ const message=`NAMASTE! XAVIER ACADEMY TIHAR FESTIVAL PANI PURI ORDER\n\nTicket Number: ${currentTicket.id}\nCustomer: ${currentTicket.name}\nPhone: ${currentTicket.phone}\n\nORDER DETAILS:\n${lines}\n\nTOTAL: NPR ${currentTicket.total}\n\nI have made the payment using the Kumari Bank QR code. I am attaching my payment screenshot. Please verify my payment. Thank you!`;
+ window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
+}
+
+renderMenu();
+renderCart();
+</script>
+</body>
+</html>
