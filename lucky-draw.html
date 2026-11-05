@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xavier Academy | Tihar Lucky Draw</title>
+<style>
+:root{--red:#861b2a;--gold:#f5c35c;--cream:#fff8eb;--green:#247448}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);font-family:Arial,sans-serif;color:#30251e;line-height:1.5}
+header{text-align:center;background:linear-gradient(135deg,#5e101d,#a52d38);color:white;padding:30px 15px;border-bottom:5px solid var(--gold)}
+header h1{margin:8px}
+header h2{color:#ffdf91}
+main{max-width:760px;margin:auto;padding:18px}
+.panel{background:white;border:1px solid #eadfc9;border-radius:14px;padding:22px;margin:18px 0}
+h2,h3{color:var(--red)}
+input,select,textarea{width:100%;padding:12px;margin:7px 0 15px;border:1px solid #d7c9b5;border-radius:8px;font-size:15px}
+label{font-weight:bold;font-size:14px}
+.check{display:flex;gap:10px;align-items:flex-start;margin:15px 0;font-weight:normal}
+.check input{width:auto;margin-top:4px}
+button{background:var(--green);color:white;width:100%;padding:15px;border:0;border-radius:8px;font-size:15px;font-weight:bold;cursor:pointer}
+.notice{background:#fff0c8;padding:15px;border-radius:10px}
+.small{font-size:12px;color:#766b60}
+.hidden{display:none}
+.ticket{font-size:24px;font-weight:bold;text-align:center;color:var(--red);background:#fff3d9;padding:14px}
+a{color:var(--red);font-weight:bold}
+footer{text-align:center;padding:20px;color:#766b60}
+</style>
+</head>
+<body>
+<header>
+ <h1>🎉 XAVIER ACADEMY 🎉</h1>
+ <h2>🪔 TIHAR FESTIVAL LUCKY DRAW 🪔</h2>
+ <p>Share your dreams. Enter the draw. Win a smartwatch!</p>
+</header>
+
+<main>
+ <div class="notice">
+  <h2 style="text-align:center">🎁 WIN A SMARTWATCH!</h2>
+  <p style="text-align:center">One eligible student will win one smartwatch at the end of the festival.</p>
+  <p style="text-align:center"><strong>No purchase is necessary to enter.</strong></p>
+ </div>
+
+ <section class="panel">
+  <h2>🎓 Student Survey & Lucky Draw Entry</h2>
+  <p>Please complete the survey to enter the lucky draw.</p>
+
+  <form id="entryForm">
+   <label for="name">Full name *</label>
+   <input id="name" required maxlength="80">
+
+   <label for="phone">Contact number *</label>
+   <input id="phone" required maxlength="15" placeholder="98XXXXXXXX">
+
+   <label for="email">Email address *</label>
+   <input id="email" type="email" required maxlength="120">
+
+   <label for="year">Which year are you studying at Xavier Academy? *</label>
+   <select id="year" required>
+    <option value="">Choose year</option>
+    <option>Year 11</option>
+    <option>Year 12</option>
+   </select>
+
+   <label for="age">Are you 18 or above? *</label>
+   <select id="age" required>
+    <option value="">Choose an answer</option>
+    <option value="18+">Yes</option>
+    <option value="under18">No</option>
+   </select>
+
+   <label for="plan">What are your plans after +2? *</label>
+   <select id="plan" required>
+    <option value="">Choose your plan</option>
+    <option>Study abroad</option>
+    <option>Study in Nepal</option>
+    <option>Work or start a business</option>
+    <option>Take a gap year</option>
+    <option>Still deciding</option>
+    <option>Other</option>
+   </select>
+
+   <label for="country">Which country interests you for further study?</label>
+   <select id="country">
+    <option value="">Choose country / option</option>
+    <option>Australia</option>
+    <option>United Kingdom</option>
+    <option>United States</option>
+    <option>Canada</option>
+    <option>Japan</option>
+    <option>South Korea</option>
+    <option>Germany</option>
+    <option>Other</option>
+    <option>Not decided / Not applicable</option>
+   </select>
+
+   <label for="subject">What subject or course interests you?</label>
+   <input id="subject" maxlength="120" placeholder="e.g. IT, Business, Engineering">
+
+   <div class="notice">
+    <strong>How we use your information</strong>
+    <p>
+     Your information will be used to administer the lucky draw, verify entries
+     and contact the winner. The organiser's identity and privacy contact details
+     must be provided before this form is published.
+    </p>
+   </div>
+
+   <label class="check">
+    <input type="checkbox" id="terms" required>
+    <span>I have read and agree to the lucky-draw terms and privacy notice. If I am under 18, my parent or guardian has approved my participation and the submission of my information. *</span>
+   </label>
+
+   <label class="check">
+    <input type="checkbox" id="marketing">
+    <span><strong>YES, I agree to receive future promotional messages, offers and educational updates from the event organiser.</strong> I understand this permission is optional and I can withdraw it at any time.</span>
+   </label>
+
+   <p class="small">
+    Marketing consent is optional and is not required to enter the draw.
+    Participants under 18 should leave the marketing box unchecked.
+   </p>
+
+   <button type="submit">🎁 SUBMIT MY LUCKY DRAW ENTRY</button>
+  </form>
+
+  <div id="success" class="hidden">
+   <h2>🎉 Thank you for entering!</h2>
+   <p>Your entry reference:</p>
+   <div id="entryNumber" class="ticket"></div>
+   <p>Please keep this reference. The organiser will contact the winner using the submitted details.</p>
+  </div>
+ </section>
+
+ <section class="panel" id="terms">
+  <h2>📜 Terms & Conditions</h2>
+  <ol>
+   <li><strong>Organiser:</strong> The event organiser must be identified by full legal or responsible organisation name before launch.</li>
+   <li><strong>Eligibility:</strong> Xavier Academy Year 11 and Year 12 students may enter, subject to the school's approval and these rules.</li>
+   <li><strong>No purchase:</strong> No food purchase or payment is required to enter.</li>
+   <li><strong>Prize:</strong> One smartwatch. The organiser should state the exact make and model before entries open.</li>
+   <li><strong>Entry limit:</strong> One entry per student. Duplicate, incomplete or fraudulent entries may be disqualified.</li>
+   <li><strong>Winner selection:</strong> One winner will be selected randomly at the end of the festival. The draw should be documented by the organiser.</li>
+   <li><strong>Winner verification:</strong> The winner may be asked to verify their identity and student eligibility.</li>
+   <li><strong>Prize collection:</strong> The winner must follow the organiser's collection instructions. A parent or guardian may need to assist a minor.</li>
+   <li><strong>Under-18 participants:</strong> Parent or guardian approval is required before entering and submitting personal information.</li>
+   <li><strong>Privacy:</strong> Information is collected for entry administration, eligibility checks and winner contact. The organiser must specify who controls the information, how to request access or correction, how to contact the organiser and when information will be deleted.</li>
+   <li><strong>Marketing:</strong> Marketing permission is separate and optional. Declining it does not affect entry or the chance of winning. Consent can be withdrawn at any time.</li>
+   <li><strong>Changes:</strong> Material changes or cancellation will be communicated by the organiser where necessary.</li>
+  </ol>
+
+  <h3>Privacy and data handling</h3>
+  <p>
+   Survey details must only be accessible to authorised organisers. They must not
+   be displayed publicly or shared with unrelated organisations. Marketing
+   communications should only be sent where valid consent has been obtained.
+  </p>
+  <p class="small">
+   The organiser should obtain school approval and review the applicable privacy,
+   minor-consent and promotional competition requirements before the event.
+  </p>
+ </section>
+
+ <p style="text-align:center"><a href="index.html">← Return to Pani Puri Menu</a></p>
+</main>
+
+<footer>Xavier Academy Tihar Festival 🪔</footer>
+
+<script>
+// Paste your Google Apps Script Web App URL here:
+const GOOGLE_SCRIPT_URL = "";
+
+function createEntryId(){
+ return "XAL-"+Date.now().toString(36).toUpperCase()+"-"+
+ Math.random().toString(36).slice(2,5).toUpperCase();
+}
+
+document.getElementById("entryForm").addEventListener("submit",async function(e){
+ e.preventDefault();
+
+ const age=document.getElementById("age").value;
+ const marketing=document.getElementById("marketing").checked;
+
+ if(age==="under18" && marketing){
+  alert("Please leave the marketing consent box unchecked if you are under 18.");
+  document.getElementById("marketing").checked=false;
+  return;
+ }
+
+ const entry={
+  type:"survey",
+  entryId:createEntryId(),
+  name:document.getElementById("name").value.trim(),
+  phone:document.getElementById("phone").value.trim(),
+  email:document.getElementById("email").value.trim(),
+  year:document.getElementById("year").value,
+  ageGroup:age,
+  futurePlan:document.getElementById("plan").value,
+  destination:document.getElementById("country").value,
+  subject:document.getElementById("subject").value.trim(),
+  termsAccepted:true,
+  marketingConsent:marketing,
+  consentTime:marketing?new Date().toISOString():"",
+  submittedAt:new Date().toISOString()
+ };
+
+ if(!/^[0-9+\-\s]{7,15}$/.test(entry.phone)){
+  alert("Please enter a valid contact number.");
+  return;
+ }
+
+ if(!GOOGLE_SCRIPT_URL){
+  alert("The survey is not connected to the organiser's private response system yet. Please try again later.");
+  return;
+ }
+
+ try{
+  const response=await fetch(GOOGLE_SCRIPT_URL,{
+   method:"POST",
+   headers:{"Content-Type":"text/plain;charset=utf-8"},
+   body:JSON.stringify(entry)
+  });
+  if(!response.ok)throw new Error("Submission failed");
+
+  document.getElementById("entryNumber").textContent=entry.entryId;
+  document.getElementById("entryForm").classList.add("hidden");
+  document.getElementById("success").classList.remove("hidden");
+ }catch(err){
+  alert("We could not confirm your entry. Please try again or contact the event organiser.");
+ }
+});
+</script>
+</body>
+</html>
