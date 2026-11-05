@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +28,7 @@ button{border:0;border-radius:8px;padding:13px 16px;font-weight:bold;cursor:poin
 .primary{background:var(--green);color:white;width:100%;padding:15px}
 .secondary{background:#eee;color:#333;width:100%;margin-top:8px}
 .cart-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eee}
-.qty button{padding:5px 10px;background:#eee}
+.qty button{padding:5px 12px;background:#eee;border-radius:4px}
 .total{font-size:24px;font-weight:bold;color:var(--red);margin:15px 0}
 .qr{display:block;width:260px;max-width:100%;margin:15px auto;border:1px solid #ddd;border-radius:8px}
 .hidden{display:none}
@@ -98,7 +97,7 @@ footer{text-align:center;padding:25px;color:#766b60}
     </p>
 
     <button class="primary" onclick="createTicketAndWhatsApp()">
-      PAY & SEND ORDER THROUGH WHATSAPP
+      PAY &amp; SEND ORDER THROUGH WHATSAPP
     </button>
     <button class="secondary" onclick="closeCheckout()">Back to Cart</button>
   </section>
@@ -119,7 +118,8 @@ footer{text-align:center;padding:25px;color:#766b60}
         <li>Show your ticket number at the stall.</li>
       </ol>
     </div>
-    <button class="primary" onclick="openWhatsAppAgain()">SEND ORDER & PAYMENT PROOF</button>
+    <button class="primary" onclick="openWhatsAppAgain()">SEND ORDER &amp; PAYMENT PROOF</button>
+    <button class="secondary" onclick="orderAgain()">Place Another Order</button>
   </section>
 
   <section class="panel" style="margin-top:22px">
@@ -155,109 +155,137 @@ const products = [
  {id:"dahi",name:"Dahi Puri",desc:"Puri with yoghurt topping.",options:[["3 Pieces",100],["8 Pieces",200]]}
 ];
 
-let cart=[];
-let currentTicket=null;
+let cart = JSON.parse(sessionStorage.getItem("xat_cart") || "[]");
+let currentTicket = JSON.parse(sessionStorage.getItem("xat_ticket") || "null");
+
+function saveCart(){
+  sessionStorage.setItem("xat_cart", JSON.stringify(cart));
+}
 
 function renderMenu(){
- document.getElementById("menuItems").innerHTML=products.map(p=>`
+ document.getElementById("menuItems").innerHTML = products.map(p => `
   <div class="card">
    <h3>${p.name}</h3>
    <p class="muted">${p.desc}</p>
-   <div class="price">${p.options.map(o=>o[0]+": NPR "+o[1]).join("<br>")}</div>
+   <div class="price">${p.options.map(o => o[0] + ": NPR " + o[1]).join("<br>")}</div>
    <select id="size-${p.id}">
-    ${p.options.map((o,i)=>`<option value="${i}">${o[0]} — NPR ${o[1]}</option>`).join("")}
+    ${p.options.map((o,i) => `<option value="${i}">${o[0]} — NPR${o[1]}</option>`).join("")}
    </select>
    <button class="add" onclick="addItem('${p.id}')">+ Add to Cart</button>
   </div>`).join("");
 }
 
 function addItem(id){
- const p=products.find(x=>x.id===id);
- const n=Number(document.getElementById("size-"+id).value);
- const o=p.options[n],key=id+"-"+n;
- const found=cart.find(x=>x.key===key);
- if(found)found.qty++;
- else cart.push({key,name:p.name,size:o[0],price:o[1],qty:1});
+ const p = products.find(x => x.id === id);
+ const n = Number(document.getElementById("size-" + id).value);
+ const o = p.options[n];
+ const key = id + "-" + n;
+ const found = cart.find(x => x.key === key);
+ if(found) found.qty++;
+ else cart.push({key, name: p.name, size: o[0], price: o[1], qty: 1});
+ saveCart();
  renderCart();
 }
 
-function changeQty(key,n){
- const item=cart.find(x=>x.key===key);
- if(!item)return;
- item.qty+=n;
- if(item.qty<=0)cart=cart.filter(x=>x.key!==key);
+function changeQty(key, n){
+ const item = cart.find(x => x.key === key);
+ if(!item) return;
+ item.qty += n;
+ if(item.qty <= 0) cart = cart.filter(x => x.key !== key);
+ saveCart();
  renderCart();
 }
 
-function total(){return cart.reduce((s,x)=>s+x.price*x.qty,0)}
+function total(){
+ return cart.reduce((s, x) => s + x.price * x.qty, 0);
+}
 
 function renderCart(){
- const el=document.getElementById("cartItems");
- if(!cart.length)el.textContent="Your cart is empty.";
- else el.innerHTML=cart.map(x=>`
-  <div class="cart-row">
-   <div><strong>${x.name}</strong><br><small>${x.size} · NPR ${x.price}</small></div>
-   <div class="qty">
-    <button onclick="changeQty('${x.key}',-1)">−</button>
-    ${x.qty}
-    <button onclick="changeQty('${x.key}',1)">+</button>
-    <strong> NPR ${x.price*x.qty}</strong>
-   </div>
-  </div>`).join("");
- document.getElementById("cartTotal").textContent="Total: NPR "+total();
+ const el = document.getElementById("cartItems");
+ if(!cart.length) {
+   el.textContent = "Your cart is empty.";
+ } else {
+   el.innerHTML = cart.map(x => `
+    <div class="cart-row">
+     <div><strong>${x.name}</strong><br><small>${x.size} · NPR ${x.price}</small></div>
+     <div class="qty">
+      <button onclick="changeQty('${x.key}', -1)">−</button>
+      <span>${x.qty}</span>
+      <button onclick="changeQty('${x.key}', 1)">+</button>
+      <strong> NPR ${x.price * x.qty}</strong>
+     </div>
+    </div>`).join("");
+ }
+ document.getElementById("cartTotal").textContent = "Total: NPR " + total();
 }
 
 function openCheckout(){
- if(!cart.length)return alert("Please add items to your cart first.");
- document.getElementById("checkoutTotal").textContent="NPR "+total();
+ if(!cart.length) return alert("Please add items to your cart first.");
+ document.getElementById("checkoutTotal").textContent = "NPR " + total();
  document.getElementById("checkout").classList.remove("hidden");
- document.getElementById("checkout").scrollIntoView({behavior:"smooth"});
+ document.getElementById("checkout").scrollIntoView({behavior: "smooth"});
 }
 
-function closeCheckout(){document.getElementById("checkout").classList.add("hidden")}
+function closeCheckout(){
+ document.getElementById("checkout").classList.add("hidden");
+}
 
 function makeTicket(){
- return "XAT-"+Date.now().toString(36).toUpperCase()+"-"+Math.random().toString(36).slice(2,5).toUpperCase();
+ return "XAT-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2,5).toUpperCase();
 }
 
 function safe(s){
- return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
 
 function createTicketAndWhatsApp(){
- const name=document.getElementById("customerName").value.trim();
- const phone=document.getElementById("customerPhone").value.trim();
- if(!name||!phone)return alert("Please enter your name and phone number.");
- if(!/^[0-9+\-\s]{7,15}$/.test(phone))return alert("Please enter a valid phone number.");
- if(!cart.length)return alert("Your cart is empty.");
+ const name = document.getElementById("customerName").value.trim();
+ const phone = document.getElementById("customerPhone").value.trim();
+ if(!name || !phone) return alert("Please enter your name and phone number.");
+ if(!/^[0-9+\-\s]{7,15}$/.test(phone)) return alert("Please enter a valid phone number.");
+ if(!cart.length) return alert("Your cart is empty.");
 
- currentTicket={
-  id:makeTicket(),name,phone,
-  items:cart.map(x=>({...x})),
-  total:total()
+ currentTicket = {
+  id: makeTicket(),
+  name: name,
+  phone: phone,
+  items: cart.map(x => ({...x})),
+  total: total()
  };
+ sessionStorage.setItem("xat_ticket", JSON.stringify(currentTicket));
 
- document.getElementById("ticketNumber").textContent=currentTicket.id;
- document.getElementById("ticketDetails").innerHTML=`
+ document.getElementById("ticketNumber").textContent = currentTicket.id;
+ document.getElementById("ticketDetails").innerHTML = `
   <p><strong>Name:</strong> ${safe(name)}</p>
   <p><strong>Phone:</strong> ${safe(phone)}</p><hr>
-  ${currentTicket.items.map(x=>`<p>${safe(x.name)} — ${safe(x.size)} × ${x.qty}: NPR ${x.price*x.qty}</p>`).join("")}
+  ${currentTicket.items.map(x => `<p>${safe(x.name)} —${safe(x.size)} × ${x.qty}: NPR${x.price * x.qty}</p>`).join("")}
   <hr><h3>Total: NPR ${currentTicket.total}</h3>
  `;
 
+ cart = [];
+ saveCart();
+ renderCart();
+
  document.getElementById("checkout").classList.add("hidden");
  document.getElementById("ticketSection").classList.remove("hidden");
- document.getElementById("ticketSection").scrollIntoView({behavior:"smooth"});
+ document.getElementById("ticketSection").scrollIntoView({behavior: "smooth"});
  openWhatsAppAgain();
 }
 
 function openWhatsAppAgain(){
- if(!currentTicket)return;
- const lines=currentTicket.items.map(x=>
-  `${x.name} (${x.size}) x ${x.qty} = NPR ${x.price*x.qty}`
+ if(!currentTicket) return;
+ const lines = currentTicket.items.map(x =>
+  `${x.name} (${x.size}) x ${x.qty} = NPR ${x.price * x.qty}`
  ).join("\n");
- const message=`NAMASTE! XAVIER ACADEMY TIHAR FESTIVAL PANI PURI ORDER\n\nTicket Number: ${currentTicket.id}\nCustomer: ${currentTicket.name}\nPhone: ${currentTicket.phone}\n\nORDER DETAILS:\n${lines}\n\nTOTAL: NPR ${currentTicket.total}\n\nI have made the payment using the Kumari Bank QR code. I am attaching my payment screenshot. Please verify my payment. Thank you!`;
- window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
+ const message = `NAMASTE! XAVIER ACADEMY TIHAR FESTIVAL PANI PURI ORDER\n\nTicket Number: ${currentTicket.id}\nCustomer: ${currentTicket.name}\nPhone: ${currentTicket.phone}\n\nORDER DETAILS:\n${lines}\n\nTOTAL: NPR ${currentTicket.total}\n\nI have made the payment using the Kumari Bank QR code. I am attaching my payment screenshot. Please verify my payment. Thank you!`;
+ window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message), "_blank");
+}
+
+function orderAgain(){
+ document.getElementById("ticketSection").classList.add("hidden");
+ document.getElementById("customerName").value = "";
+ document.getElementById("customerPhone").value = "";
+ document.getElementById("menu").scrollIntoView({behavior: "smooth"});
 }
 
 renderMenu();
