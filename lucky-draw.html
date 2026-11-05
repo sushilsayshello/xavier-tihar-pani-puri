@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +19,11 @@ label{font-weight:bold;font-size:14px}
 .check{display:flex;gap:10px;align-items:flex-start;margin:15px 0;font-weight:normal}
 .check input{width:auto;margin-top:4px}
 button{background:var(--green);color:white;width:100%;padding:15px;border:0;border-radius:8px;font-size:15px;font-weight:bold;cursor:pointer}
+button:disabled{background:#8cb39d;cursor:not-allowed}
 .notice{background:#fff0c8;padding:15px;border-radius:10px}
 .small{font-size:12px;color:#766b60}
 .hidden{display:none}
-.ticket{font-size:24px;font-weight:bold;text-align:center;color:var(--red);background:#fff3d9;padding:14px}
+.ticket{font-size:24px;font-weight:bold;text-align:center;color:var(--red);background:#fff3d9;padding:14px;border-radius:8px}
 a{color:var(--red);font-weight:bold}
 footer{text-align:center;padding:20px;color:#766b60}
 </style>
@@ -43,24 +43,24 @@ footer{text-align:center;padding:20px;color:#766b60}
  </div>
 
  <section class="panel">
-  <h2>🎓 Student Survey & Lucky Draw Entry</h2>
+  <h2>🎓 Student Survey &amp; Lucky Draw Entry</h2>
   <p>Please complete the survey to enter the lucky draw.</p>
 
   <form id="entryForm">
    <label for="name">Full name *</label>
-   <input id="name" required maxlength="80">
+   <input id="name" required maxlength="80" placeholder="e.g. Aarav Sharma">
 
    <label for="phone">Contact number *</label>
    <input id="phone" required maxlength="15" placeholder="98XXXXXXXX">
 
    <label for="email">Email address *</label>
-   <input id="email" type="email" required maxlength="120">
+   <input id="email" type="email" required maxlength="120" placeholder="student@example.com">
 
    <label for="year">Which year are you studying at Xavier Academy? *</label>
    <select id="year" required>
     <option value="">Choose year</option>
-    <option>Year 11</option>
-    <option>Year 12</option>
+    <option value="Year 11">Year 11</option>
+    <option value="Year 12">Year 12</option>
    </select>
 
    <label for="age">Are you 18 or above? *</label>
@@ -73,26 +73,26 @@ footer{text-align:center;padding:20px;color:#766b60}
    <label for="plan">What are your plans after +2? *</label>
    <select id="plan" required>
     <option value="">Choose your plan</option>
-    <option>Study abroad</option>
-    <option>Study in Nepal</option>
-    <option>Work or start a business</option>
-    <option>Take a gap year</option>
-    <option>Still deciding</option>
-    <option>Other</option>
+    <option value="Study abroad">Study abroad</option>
+    <option value="Study in Nepal">Study in Nepal</option>
+    <option value="Work or start a business">Work or start a business</option>
+    <option value="Take a gap year">Take a gap year</option>
+    <option value="Still deciding">Still deciding</option>
+    <option value="Other">Other</option>
    </select>
 
    <label for="country">Which country interests you for further study?</label>
    <select id="country">
     <option value="">Choose country / option</option>
-    <option>Australia</option>
-    <option>United Kingdom</option>
-    <option>United States</option>
-    <option>Canada</option>
-    <option>Japan</option>
-    <option>South Korea</option>
-    <option>Germany</option>
-    <option>Other</option>
-    <option>Not decided / Not applicable</option>
+    <option value="Australia">Australia</option>
+    <option value="United Kingdom">United Kingdom</option>
+    <option value="United States">United States</option>
+    <option value="Canada">Canada</option>
+    <option value="Japan">Japan</option>
+    <option value="South Korea">South Korea</option>
+    <option value="Germany">Germany</option>
+    <option value="Other">Other</option>
+    <option value="Not decided / Not applicable">Not decided / Not applicable</option>
    </select>
 
    <label for="subject">What subject or course interests you?</label>
@@ -122,19 +122,19 @@ footer{text-align:center;padding:20px;color:#766b60}
     Participants under 18 should leave the marketing box unchecked.
    </p>
 
-   <button type="submit">🎁 SUBMIT MY LUCKY DRAW ENTRY</button>
+   <button type="submit" id="submitBtn">🎁 SUBMIT MY LUCKY DRAW ENTRY</button>
   </form>
 
   <div id="success" class="hidden">
-   <h2>🎉 Thank you for entering!</h2>
-   <p>Your entry reference:</p>
+   <h2 style="text-align:center">🎉 Thank you for entering!</h2>
+   <p style="text-align:center">Your entry reference:</p>
    <div id="entryNumber" class="ticket"></div>
-   <p>Please keep this reference. The organiser will contact the winner using the submitted details.</p>
+   <p style="text-align:center">Please take a screenshot of this reference. The winner will be contacted directly.</p>
   </div>
  </section>
 
- <section class="panel" id="terms">
-  <h2>📜 Terms & Conditions</h2>
+ <section class="panel" id="termsSection">
+  <h2>📜 Terms &amp; Conditions</h2>
   <ol>
    <li><strong>Organiser:</strong> The event organiser must be identified by full legal or responsible organisation name before launch.</li>
    <li><strong>Eligibility:</strong> Xavier Academy Year 11 and Year 12 students may enter, subject to the school's approval and these rules.</li>
@@ -145,21 +145,9 @@ footer{text-align:center;padding:20px;color:#766b60}
    <li><strong>Winner verification:</strong> The winner may be asked to verify their identity and student eligibility.</li>
    <li><strong>Prize collection:</strong> The winner must follow the organiser's collection instructions. A parent or guardian may need to assist a minor.</li>
    <li><strong>Under-18 participants:</strong> Parent or guardian approval is required before entering and submitting personal information.</li>
-   <li><strong>Privacy:</strong> Information is collected for entry administration, eligibility checks and winner contact. The organiser must specify who controls the information, how to request access or correction, how to contact the organiser and when information will be deleted.</li>
-   <li><strong>Marketing:</strong> Marketing permission is separate and optional. Declining it does not affect entry or the chance of winning. Consent can be withdrawn at any time.</li>
-   <li><strong>Changes:</strong> Material changes or cancellation will be communicated by the organiser where necessary.</li>
+   <li><strong>Privacy:</strong> Information is collected for entry administration, eligibility checks and winner contact.</li>
+   <li><strong>Marketing:</strong> Marketing permission is separate and optional. Declining it does not affect entry or the chance of winning.</li>
   </ol>
-
-  <h3>Privacy and data handling</h3>
-  <p>
-   Survey details must only be accessible to authorised organisers. They must not
-   be displayed publicly or shared with unrelated organisations. Marketing
-   communications should only be sent where valid consent has been obtained.
-  </p>
-  <p class="small">
-   The organiser should obtain school approval and review the applicable privacy,
-   minor-consent and promotional competition requirements before the event.
-  </p>
  </section>
 
  <p style="text-align:center"><a href="index.html">← Return to Pani Puri Menu</a></p>
@@ -168,66 +156,75 @@ footer{text-align:center;padding:20px;color:#766b60}
 <footer>Xavier Academy Tihar Festival 🪔</footer>
 
 <script>
-// Paste your Google Apps Script Web App URL here:
-const GOOGLE_SCRIPT_URL = "";
+// Paste your deployed Google Apps Script Web App URL below:
+const GOOGLE_SCRIPT_URL = "YOUR_DEPLOYED_GOOGLE_SCRIPT_WEB_APP_URL";
 
 function createEntryId(){
- return "XAL-"+Date.now().toString(36).toUpperCase()+"-"+
+ return "XAL-" + Date.now().toString(36).toUpperCase() + "-" +
  Math.random().toString(36).slice(2,5).toUpperCase();
 }
 
-document.getElementById("entryForm").addEventListener("submit",async function(e){
+document.getElementById("entryForm").addEventListener("submit", async function(e){
  e.preventDefault();
 
- const age=document.getElementById("age").value;
- const marketing=document.getElementById("marketing").checked;
+ const submitBtn = document.getElementById("submitBtn");
+ const age = document.getElementById("age").value;
+ const marketing = document.getElementById("marketing").checked;
 
- if(age==="under18" && marketing){
-  alert("Please leave the marketing consent box unchecked if you are under 18.");
-  document.getElementById("marketing").checked=false;
+ if(age === "under18" && marketing){
+  alert("Please uncheck the promotional marketing consent box if you are under 18.");
+  document.getElementById("marketing").checked = false;
   return;
  }
 
- const entry={
-  type:"survey",
-  entryId:createEntryId(),
-  name:document.getElementById("name").value.trim(),
-  phone:document.getElementById("phone").value.trim(),
-  email:document.getElementById("email").value.trim(),
-  year:document.getElementById("year").value,
-  ageGroup:age,
-  futurePlan:document.getElementById("plan").value,
-  destination:document.getElementById("country").value,
-  subject:document.getElementById("subject").value.trim(),
-  termsAccepted:true,
-  marketingConsent:marketing,
-  consentTime:marketing?new Date().toISOString():"",
-  submittedAt:new Date().toISOString()
+ const phone = document.getElementById("phone").value.trim();
+ if(!/^[0-9+\-\s]{7,15}$/.test(phone)){
+  alert("Please enter a valid phone number (7 to 15 digits).");
+  return;
+ }
+
+ if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_DEPLOYED")){
+  alert("System setup note: Please configure the Google Apps Script URL before taking entries.");
+  return;
+ }
+
+ const entry = {
+  type: "survey",
+  entryId: createEntryId(),
+  name: document.getElementById("name").value.trim(),
+  phone: phone,
+  email: document.getElementById("email").value.trim(),
+  year: document.getElementById("year").value,
+  ageGroup: age,
+  futurePlan: document.getElementById("plan").value,
+  destination: document.getElementById("country").value,
+  subject: document.getElementById("subject").value.trim(),
+  termsAccepted: true,
+  marketingConsent: marketing,
+  consentTime: marketing ? new Date().toISOString() : "",
+  submittedAt: new Date().toISOString()
  };
 
- if(!/^[0-9+\-\s]{7,15}$/.test(entry.phone)){
-  alert("Please enter a valid contact number.");
-  return;
- }
+ submitBtn.disabled = true;
+ submitBtn.textContent = "Submitting Entry...";
 
- if(!GOOGLE_SCRIPT_URL){
-  alert("The survey is not connected to the organiser's private response system yet. Please try again later.");
-  return;
- }
-
- try{
-  const response=await fetch(GOOGLE_SCRIPT_URL,{
-   method:"POST",
-   headers:{"Content-Type":"text/plain;charset=utf-8"},
-   body:JSON.stringify(entry)
+ try {
+  // Using mode: 'no-cors' prevents Apps Script 302 redirect issues in modern browsers
+  await fetch(GOOGLE_SCRIPT_URL, {
+   method: "POST",
+   mode: "no-cors",
+   headers: { "Content-Type": "text/plain;charset=utf-8" },
+   body: JSON.stringify(entry)
   });
-  if(!response.ok)throw new Error("Submission failed");
 
-  document.getElementById("entryNumber").textContent=entry.entryId;
+  document.getElementById("entryNumber").textContent = entry.entryId;
   document.getElementById("entryForm").classList.add("hidden");
   document.getElementById("success").classList.remove("hidden");
- }catch(err){
-  alert("We could not confirm your entry. Please try again or contact the event organiser.");
+  document.getElementById("success").scrollIntoView({behavior: "smooth"});
+ } catch(err) {
+  alert("We could not confirm your entry. Please check your internet connection or contact the stall team.");
+  submitBtn.disabled = false;
+  submitBtn.textContent = "🎁 SUBMIT MY LUCKY DRAW ENTRY";
  }
 });
 </script>
