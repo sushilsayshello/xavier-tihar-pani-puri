@@ -16,7 +16,7 @@ main{max-width:760px;margin:auto;padding:18px}
 h2,h3{color:var(--red)}
 input,select,textarea{width:100%;padding:12px;margin:7px 0 15px;border:1px solid #d7c9b5;border-radius:8px;font-size:15px}
 label{font-weight:bold;font-size:14px}
-.check{display:flex;gap:10px;align-items:flex-start;margin:15px 0;font-weight:normal}
+.check{display:flex;gap:10px;align-items:flex-start;margin:15px 0;font-weight:normal;cursor:pointer}
 .check input{width:auto;margin-top:4px}
 button{background:var(--green);color:white;width:100%;padding:15px;border:0;border-radius:8px;font-size:15px;font-weight:bold;cursor:pointer}
 button:disabled{background:#8cb39d;cursor:not-allowed}
@@ -38,13 +38,13 @@ footer{text-align:center;padding:20px;color:#766b60}
 <main>
  <div class="notice">
   <h2 style="text-align:center">🎁 WIN A SMARTWATCH!</h2>
-  <p style="text-align:center">One eligible student will win one smartwatch at the end of the festival.</p>
+  <p style="text-align:center">One eligible winner will be selected at the end of the festival.</p>
   <p style="text-align:center"><strong>No purchase is necessary to enter.</strong></p>
  </div>
 
  <section class="panel">
   <h2>🎓 Student Survey &amp; Lucky Draw Entry</h2>
-  <p>Please complete the survey to enter the lucky draw.</p>
+  <p>Please complete the survey below to enter the lucky draw.</p>
 
   <form id="entryForm">
    <label for="name">Full name *</label>
@@ -56,33 +56,36 @@ footer{text-align:center;padding:20px;color:#766b60}
    <label for="email">Email address *</label>
    <input id="email" type="email" required maxlength="120" placeholder="student@example.com">
 
-   <label for="year">Which year are you studying at Xavier Academy? *</label>
-   <select id="year" required>
+   <label for="year">Which year / level are you studying? *</label>
+   <select id="year" required onchange="toggleOtherInput('year', 'yearOther')">
     <option value="">Choose year</option>
     <option value="Year 11">Year 11</option>
     <option value="Year 12">Year 12</option>
+    <option value="Other">Other (Please specify below)</option>
    </select>
+   <input id="yearOther" class="hidden" maxlength="60" placeholder="Specify your year / class / affiliation">
 
    <label for="age">Are you 18 or above? *</label>
    <select id="age" required>
     <option value="">Choose an answer</option>
-    <option value="18+">Yes</option>
-    <option value="under18">No</option>
+    <option value="under18">No (Under 18)</option>
+    <option value="18+">Yes (18 or above)</option>
    </select>
 
    <label for="plan">What are your plans after +2? *</label>
-   <select id="plan" required>
+   <select id="plan" required onchange="toggleOtherInput('plan', 'planOther')">
     <option value="">Choose your plan</option>
     <option value="Study abroad">Study abroad</option>
     <option value="Study in Nepal">Study in Nepal</option>
     <option value="Work or start a business">Work or start a business</option>
     <option value="Take a gap year">Take a gap year</option>
     <option value="Still deciding">Still deciding</option>
-    <option value="Other">Other</option>
+    <option value="Other">Other (Please specify below)</option>
    </select>
+   <input id="planOther" class="hidden" maxlength="100" placeholder="Specify your future plans">
 
    <label for="country">Which country interests you for further study?</label>
-   <select id="country">
+   <select id="country" onchange="toggleOtherInput('country', 'countryOther')">
     <option value="">Choose country / option</option>
     <option value="Australia">Australia</option>
     <option value="United Kingdom">United Kingdom</option>
@@ -91,36 +94,28 @@ footer{text-align:center;padding:20px;color:#766b60}
     <option value="Japan">Japan</option>
     <option value="South Korea">South Korea</option>
     <option value="Germany">Germany</option>
-    <option value="Other">Other</option>
+    <option value="Other">Other (Please specify below)</option>
     <option value="Not decided / Not applicable">Not decided / Not applicable</option>
    </select>
+   <input id="countryOther" class="hidden" maxlength="80" placeholder="Specify country name">
 
    <label for="subject">What subject or course interests you?</label>
-   <input id="subject" maxlength="120" placeholder="e.g. IT, Business, Engineering">
+   <input id="subject" maxlength="120" placeholder="e.g. IT, Business, Engineering, Medicine">
 
    <div class="notice">
-    <strong>How we use your information</strong>
-    <p>
-     Your information will be used to administer the lucky draw, verify entries
-     and contact the winner. The organiser's identity and privacy contact details
-     must be provided before this form is published.
-    </p>
+    <strong>Consent &amp; Communication</strong>
+    <p>Please accept both terms below to complete your lucky draw submission.</p>
    </div>
 
    <label class="check">
     <input type="checkbox" id="terms" required>
-    <span>I have read and agree to the lucky-draw terms and privacy notice. If I am under 18, my parent or guardian has approved my participation and the submission of my information. *</span>
+    <span><strong>1. Terms &amp; Rules:</strong> I agree to the lucky-draw terms and privacy guidelines. If I am under 18, my parent or guardian approves my participation. *</span>
    </label>
 
    <label class="check">
-    <input type="checkbox" id="marketing">
-    <span><strong>YES, I agree to receive future promotional messages, offers and educational updates from the event organiser.</strong> I understand this permission is optional and I can withdraw it at any time.</span>
+    <input type="checkbox" id="marketing" required>
+    <span><strong>2. Future Updates:</strong> I agree to receive future promotional messages, offers, and educational updates from the event organisers. *</span>
    </label>
-
-   <p class="small">
-    Marketing consent is optional and is not required to enter the draw.
-    Participants under 18 should leave the marketing box unchecked.
-   </p>
 
    <button type="submit" id="submitBtn">🎁 SUBMIT MY LUCKY DRAW ENTRY</button>
   </form>
@@ -136,17 +131,11 @@ footer{text-align:center;padding:20px;color:#766b60}
  <section class="panel" id="termsSection">
   <h2>📜 Terms &amp; Conditions</h2>
   <ol>
-   <li><strong>Organiser:</strong> The event organiser must be identified by full legal or responsible organisation name before launch.</li>
-   <li><strong>Eligibility:</strong> Xavier Academy Year 11 and Year 12 students may enter, subject to the school's approval and these rules.</li>
+   <li><strong>Eligibility:</strong> Students may enter subject to event guidelines and rules.</li>
    <li><strong>No purchase:</strong> No food purchase or payment is required to enter.</li>
-   <li><strong>Prize:</strong> One smartwatch. The organiser should state the exact make and model before entries open.</li>
-   <li><strong>Entry limit:</strong> One entry per student. Duplicate, incomplete or fraudulent entries may be disqualified.</li>
-   <li><strong>Winner selection:</strong> One winner will be selected randomly at the end of the festival. The draw should be documented by the organiser.</li>
-   <li><strong>Winner verification:</strong> The winner may be asked to verify their identity and student eligibility.</li>
-   <li><strong>Prize collection:</strong> The winner must follow the organiser's collection instructions. A parent or guardian may need to assist a minor.</li>
-   <li><strong>Under-18 participants:</strong> Parent or guardian approval is required before entering and submitting personal information.</li>
-   <li><strong>Privacy:</strong> Information is collected for entry administration, eligibility checks and winner contact.</li>
-   <li><strong>Marketing:</strong> Marketing permission is separate and optional. Declining it does not affect entry or the chance of winning.</li>
+   <li><strong>Prize:</strong> One smartwatch.</li>
+   <li><strong>Entry limit:</strong> One entry per person. Duplicate entries may be disqualified.</li>
+   <li><strong>Winner selection:</strong> The winner will be selected randomly from the entries after the festival.</li>
   </ol>
  </section>
 
@@ -158,67 +147,90 @@ footer{text-align:center;padding:20px;color:#766b60}
 <script>
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXFdMCajY9Se3R7u-Nk_3NVbSXCQiOUVRUpQCTOAPGSDcR42H4O1u7DfHhnEhQJh_3/exec";
 
+function toggleOtherInput(selectId, inputId) {
+  const selectEl = document.getElementById(selectId);
+  const inputEl = document.getElementById(inputId);
+  if (selectEl.value === "Other") {
+    inputEl.classList.remove("hidden");
+    inputEl.focus();
+  } else {
+    inputEl.classList.add("hidden");
+    inputEl.value = "";
+  }
+}
+
 function createEntryId(){
- return "XAL-" + Date.now().toString(36).toUpperCase() + "-" +
- Math.random().toString(36).slice(2,5).toUpperCase();
+  return "XAL-" + Date.now().toString(36).toUpperCase() + "-" +
+  Math.random().toString(36).slice(2,5).toUpperCase();
 }
 
 document.getElementById("entryForm").addEventListener("submit", async function(e){
- e.preventDefault();
+  e.preventDefault();
 
- const submitBtn = document.getElementById("submitBtn");
- const age = document.getElementById("age").value;
- const marketing = document.getElementById("marketing").checked;
+  const submitBtn = document.getElementById("submitBtn");
+  const phone = document.getElementById("phone").value.trim();
 
- if(age === "under18" && marketing){
-  alert("Please uncheck the promotional marketing consent box if you are under 18.");
-  document.getElementById("marketing").checked = false;
-  return;
- }
+  if(!/^[0-9+\-\s]{7,15}$/.test(phone)){
+    alert("Please enter a valid phone number (7 to 15 digits).");
+    return;
+  }
 
- const phone = document.getElementById("phone").value.trim();
- if(!/^[0-9+\-\s]{7,15}$/.test(phone)){
-  alert("Please enter a valid phone number (7 to 15 digits).");
-  return;
- }
+  // Handle "Other" inputs
+  let yearVal = document.getElementById("year").value;
+  const yearOther = document.getElementById("yearOther").value.trim();
+  if (yearVal === "Other" && yearOther) {
+    yearVal = "Other: " + yearOther;
+  }
 
- const entry = {
-  type: "survey",
-  entryId: createEntryId(),
-  name: document.getElementById("name").value.trim(),
-  phone: phone,
-  email: document.getElementById("email").value.trim(),
-  year: document.getElementById("year").value,
-  ageGroup: age,
-  futurePlan: document.getElementById("plan").value,
-  destination: document.getElementById("country").value,
-  subject: document.getElementById("subject").value.trim(),
-  termsAccepted: true,
-  marketingConsent: marketing,
-  consentTime: marketing ? new Date().toISOString() : "",
-  submittedAt: new Date().toISOString()
- };
+  let planVal = document.getElementById("plan").value;
+  const planOther = document.getElementById("planOther").value.trim();
+  if (planVal === "Other" && planOther) {
+    planVal = "Other: " + planOther;
+  }
 
- submitBtn.disabled = true;
- submitBtn.textContent = "Submitting Entry...";
+  let countryVal = document.getElementById("country").value;
+  const countryOther = document.getElementById("countryOther").value.trim();
+  if (countryVal === "Other" && countryOther) {
+    countryVal = "Other: " + countryOther;
+  }
 
- try {
-  await fetch(GOOGLE_SCRIPT_URL, {
-   method: "POST",
-   mode: "no-cors",
-   headers: { "Content-Type": "text/plain;charset=utf-8" },
-   body: JSON.stringify(entry)
-  });
+  const entry = {
+    type: "survey",
+    entryId: createEntryId(),
+    name: document.getElementById("name").value.trim(),
+    phone: phone,
+    email: document.getElementById("email").value.trim(),
+    year: yearVal,
+    ageGroup: document.getElementById("age").value,
+    futurePlan: planVal,
+    destination: countryVal,
+    subject: document.getElementById("subject").value.trim(),
+    termsAccepted: true,
+    marketingConsent: true,
+    consentTime: new Date().toISOString(),
+    submittedAt: new Date().toISOString()
+  };
 
-  document.getElementById("entryNumber").textContent = entry.entryId;
-  document.getElementById("entryForm").classList.add("hidden");
-  document.getElementById("success").classList.remove("hidden");
-  document.getElementById("success").scrollIntoView({behavior: "smooth"});
- } catch(err) {
-  alert("We could not confirm your entry. Please check your internet connection or contact the stall team.");
-  submitBtn.disabled = false;
-  submitBtn.textContent = "🎁 SUBMIT MY LUCKY DRAW ENTRY";
- }
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting Entry...";
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(entry)
+    });
+
+    document.getElementById("entryNumber").textContent = entry.entryId;
+    document.getElementById("entryForm").classList.add("hidden");
+    document.getElementById("success").classList.remove("hidden");
+    document.getElementById("success").scrollIntoView({behavior: "smooth"});
+  } catch(err) {
+    alert("We could not confirm your entry. Please check your internet connection or contact the stall team.");
+    submitBtn.disabled = false;
+    submitBtn.textContent = "🎁 SUBMIT MY LUCKY DRAW ENTRY";
+  }
 });
 </script>
 </body>
