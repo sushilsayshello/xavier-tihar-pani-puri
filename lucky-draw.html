@@ -156,8 +156,7 @@ footer{text-align:center;padding:20px;color:#766b60}
 <footer>Xavier Academy Tihar Festival 🪔</footer>
 
 <script>
-// Paste your deployed Google Apps Script Web App URL below:
-const GOOGLE_SCRIPT_URL = "YOUR_DEPLOYED_GOOGLE_SCRIPT_WEB_APP_URL";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXFdMCajY9Se3R7u-Nk_3NVbSXCQiOUVRUpQCTOAPGSDcR42H4O1u7DfHhnEhQJh_3/exec";
 
 function createEntryId(){
  return "XAL-" + Date.now().toString(36).toUpperCase() + "-" +
@@ -183,11 +182,6 @@ document.getElementById("entryForm").addEventListener("submit", async function(e
   return;
  }
 
- if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_DEPLOYED")){
-  alert("System setup note: Please configure the Google Apps Script URL before taking entries.");
-  return;
- }
-
  const entry = {
   type: "survey",
   entryId: createEntryId(),
@@ -209,7 +203,6 @@ document.getElementById("entryForm").addEventListener("submit", async function(e
  submitBtn.textContent = "Submitting Entry...";
 
  try {
-  // Using mode: 'no-cors' prevents Apps Script 302 redirect issues in modern browsers
   await fetch(GOOGLE_SCRIPT_URL, {
    method: "POST",
    mode: "no-cors",
