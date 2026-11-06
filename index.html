@@ -176,6 +176,13 @@ nav {
 }
 .badge-veg { background: #DCFCE7; color: var(--accent); }
 .badge-nonveg { background: #FEE2E2; color: #DC2626; }
+.badge-soldout { background: #475569; color: #FFFFFF; }
+
+.product-card.sold-out {
+  opacity: 0.65;
+  filter: grayscale(25%);
+}
+
 .product-card h3 { font-size: 19px; color: var(--text-dark); margin-bottom: 6px; }
 .product-desc { font-size: 14px; color: var(--text-muted); min-height: 44px; }
 .product-card-bottom { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
@@ -202,6 +209,11 @@ select.size-select {
   margin-bottom: 14px;
   cursor: pointer;
 }
+select.size-select:disabled {
+  cursor: not-allowed;
+  background: #F1F5F9;
+  color: #94A3B8;
+}
 .btn-add {
   width: 100%;
   background: var(--primary);
@@ -218,6 +230,20 @@ select.size-select {
   transition: background 0.2s;
 }
 .btn-add:hover { background: var(--primary-hover); }
+
+.btn-disabled {
+  width: 100%;
+  background: #CBD5E1 !important;
+  color: #64748B !important;
+  padding: 12px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: not-allowed !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Cart and Panel */
 .panel {
@@ -471,14 +497,14 @@ footer a:hover { text-decoration: underline; }
 const WHATSAPP_NUMBER = "9779740296336";
 
 const products = [
- {id:"normal",name:"Normal Pani Puri",desc:"Potato, crunchy legumes, and signature mint-tangy pani.",options:[["3 Pieces",50],["8 Pieces",100]],type:"veg"},
- {id:"cheese",name:"Cheese Pani Puri",desc:"Seasoned potato filling, shredded cheese, and tangy tomato sauce.",options:[["3 Pieces",100],["8 Pieces",200]],type:"veg"},
- {id:"chocolate",name:"Chocolate Pani Puri",desc:"Crispy shells with rich chocolate drizzle and shaved Cadbury chocolate.",options:[["3 Pieces",150],["5 Pieces",200]],type:"veg"},
- {id:"chicken",name:"Chicken Keema Pani Puri",desc:"Spiced minced chicken keema with savory momo-style jhol achar.",options:[["3 Pieces",90],["8 Pieces",200]],type:"nonveg"},
- {id:"buff",name:"Buff Keema Pani Puri",desc:"Spiced minced buff keema paired with zesty authentic momo jhol.",options:[["3 Pieces",80],["8 Pieces",180]],type:"nonveg"},
- {id:"fruity",name:"Fruity Pani Puri",desc:"Pomegranate, minced seasonal fruits, and chilled sweet-tangy mango Fruity gravy.",options:[["3 Pieces",150],["5 Pieces",200]],type:"veg"},
- {id:"daal",name:"Daal Pani Puri",desc:"Crispy puri filled with chana daal and spiced red-lentil jhol.",options:[["3 Pieces",50],["8 Pieces",100]],type:"veg"},
- {id:"dahi",name:"Dahi Puri",desc:"Stuffed puri garnished with chilled sweet yogurt, fine sev, and spices.",options:[["3 Pieces",100],["8 Pieces",200]],type:"veg"}
+  {id:"normal",name:"Normal Pani Puri",desc:"Potato, crunchy legumes, and signature mint-tangy pani.",options:[["3 Pieces",50],["8 Pieces",100]],type:"veg"},
+  {id:"cheese",name:"Cheese Pani Puri",desc:"Seasoned potato filling, shredded cheese, and tangy tomato sauce.",options:[["3 Pieces",100],["8 Pieces",200]],type:"veg"},
+  {id:"chocolate",name:"Chocolate Pani Puri",desc:"Crispy shells with rich chocolate drizzle and shaved Cadbury chocolate.",options:[["3 Pieces",150],["5 Pieces",200]],type:"veg"},
+  {id:"chicken",name:"Chicken Keema Pani Puri",desc:"Spiced minced chicken keema with savory momo-style jhol achar.",options:[["3 Pieces",90],["8 Pieces",200]],type:"nonveg",outOfStock:true},
+  {id:"buff",name:"Buff Keema Pani Puri",desc:"Spiced minced buff keema paired with zesty authentic momo jhol.",options:[["3 Pieces",80],["8 Pieces",180]],type:"nonveg",outOfStock:true},
+  {id:"fruity",name:"Fruity Pani Puri",desc:"Pomegranate, minced seasonal fruits, and chilled sweet-tangy mango Fruity gravy.",options:[["3 Pieces",150],["5 Pieces",200]],type:"veg"},
+  {id:"daal",name:"Daal Pani Puri",desc:"Crispy puri filled with chana daal and spiced red-lentil jhol.",options:[["3 Pieces",50],["8 Pieces",100]],type:"veg"},
+  {id:"dahi",name:"Dahi Puri",desc:"Stuffed puri garnished with chilled sweet yogurt, fine sev, and spices.",options:[["3 Pieces",100],["8 Pieces",200]],type:"veg"}
 ];
 
 let cart = JSON.parse(sessionStorage.getItem("xat_cart") || "[]");
@@ -488,10 +514,10 @@ function saveCart(){ sessionStorage.setItem("xat_cart", JSON.stringify(cart)); }
 
 function renderMenu(){
   document.getElementById("menuItems").innerHTML = products.map(p => `
-    <div class="product-card">
+    <div class="product-card ${p.outOfStock ? 'sold-out' : ''}">
       <div class="product-card-top">
-        <span class="card-badge ${p.type === 'veg' ? 'badge-veg' : 'badge-nonveg'}">
-          ${p.type === 'veg' ? '● Pure Veg' : '▲ Non-Veg'}
+        <span class="card-badge ${p.outOfStock ? 'badge-soldout' : (p.type === 'veg' ? 'badge-veg' : 'badge-nonveg')}">
+          ${p.outOfStock ? '✖ Out of Stock' : (p.type === 'veg' ? '● Pure Veg' : '▲ Non-Veg')}
         </span>
         <h3>${p.name}</h3>
         <p class="product-desc">${p.desc}</p>
@@ -500,12 +526,18 @@ function renderMenu(){
         <div class="price-display">
           ${p.options.map(o => o[0] + " — NPR " + o[1]).join(" | ")}
         </div>
-        <select class="size-select" id="size-${p.id}">
+        <select class="size-select" id="size-${p.id}" ${p.outOfStock ? 'disabled' : ''}>
           ${p.options.map((o,i) => `<option value="${i}">${o[0]} (NPR ${o[1]})</option>`).join("")}
         </select>
-        <button class="btn-add" onclick="addItem('${p.id}')">
-          + Add to Cart
-        </button>
+        ${p.outOfStock ? `
+          <button class="btn-disabled" disabled>
+            Sold Out
+          </button>
+        ` : `
+          <button class="btn-add" onclick="addItem('${p.id}')">
+            + Add to Cart
+          </button>
+        `}
       </div>
     </div>
   `).join("");
@@ -513,6 +545,7 @@ function renderMenu(){
 
 function addItem(id){
   const p = products.find(x => x.id === id);
+  if (!p || p.outOfStock) return;
   const n = Number(document.getElementById("size-" + id).value);
   const o = p.options[n];
   const key = id + "-" + n;
