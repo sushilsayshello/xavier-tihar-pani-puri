@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Official Terms & Privacy Conditions | Xavier Academy Tihar Festival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #F97316;
+  --primary-hover: #EA580C;
+  --secondary: #FACC15;
+  --accent: #16A34A;
+  --bg-cream: #FFF8ED;
+  --text-dark: #222222;
+  --text-muted: #64748B;
+  --border-light: #F1E5D1;
+  --card-bg: #FFFFFF;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 10px 30px rgba(0,0,0,0.06);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; line-height: 1.3; }
+
+/* Sticky Navigation */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+.nav-content {
+  max-width: 1000px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-brand {
+  font-family: 'Poppins', sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: 18px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--primary); }
+
+/* Header Banner */
+.terms-header {
+  background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+  color: white;
+  padding: 50px 20px 65px;
+  text-align: center;
+  border-bottom: 5px solid var(--secondary);
+}
+.badge {
+  background: var(--secondary);
+  color: #7C2D12;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.terms-header h1 { font-size: 34px; margin-bottom: 8px; }
+.terms-header h1 span { color: var(--secondary); }
+.terms-header p { color: #CBD5E1; font-size: 15px; max-width: 650px; margin: auto; }
+
+/* Main Content Layout */
+.container { max-width: 900px; margin: -30px auto 60px; padding: 0 20px; position: relative; z-index: 10; }
+.terms-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+}
+
+.notice-box {
+  background: #FFF7ED;
+  border: 1px solid #FFEDD5;
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #7C2D12;
+}
+
+section.clause {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #F1F5F9;
+}
+section.clause:last-of-type { border-bottom: none; }
+h2 {
+  font-size: 20px;
+  color: #7C2D12;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+p { color: #475569; font-size: 15px; margin-bottom: 12px; }
+ul, ol { padding-left: 22px; color: #475569; font-size: 15px; }
+li { margin-bottom: 8px; }
+strong { color: var(--text-dark); }
+
+.prize-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 2px dashed var(--border-light);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-secondary { background: #F1F5F9; color: #475569; }
+.btn-secondary:hover { background: #E2E8F0; }
+
+footer {
+  background: #1E293B;
+  color: #94A3B8;
+  padding: 35px 20px;
+  text-align: center;
+  font-size: 14px;
+}
+footer a { color: var(--secondary); text-decoration: none; margin: 0 8px; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+
+@media(max-width: 600px) {
+  .terms-card { padding: 25px 20px; }
+  .terms-header h1 { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-content">
+    <a href="index.html" class="nav-brand">🎉 XAVIER TIHAR STALL</a>
+    <div class="nav-links">
+      <a href="index.html">Menu &amp; Ordering</a>
+      <a href="lucky-draw.html">Survey &amp; Draw</a>
+    </div>
+  </div>
+</nav>
+
+<header class="terms-header">
+  <span class="badge">Official Event Documentation</span>
+  <h1>Terms, Rules &amp; <span>Privacy Notice</span></h1>
+  <p>Guidelines for the Xavier Academy Tihar Festival Pani Puri Stall, WhatsApp Ordering &amp; T900 Ultra Smartwatch Lucky Draw.</p>
+</header>
+
+<main class="container">
+  <div class="terms-card">
+
+    <div class="notice-box">
+      <strong>🪔 Summary for Participants:</strong> Entry into the lucky draw is 100% free with no food purchase necessary. All student details are kept in a private, encrypted Google Sheet and handled with strict confidentiality.
+    </div>
+
+    <!-- Section 1 -->
+    <section class="clause">
+      <h2>1. Stall Organizers &amp; Context</h2>
+      <p>
+        The Pani Puri Stall, WhatsApp ordering service, and student survey are operated by the 
+        <strong>Xavier Academy Tihar Festival Organizing Committee</strong> as part of the student festival celebration in Kathmandu, Nepal.
+      </p>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="clause">
+      <h2>2. Eligibility Criteria</h2>
+      <ul>
+        <li><strong>Open Participants:</strong> Currently enrolled students of Xavier Academy (Grade 11 and Grade 12), faculty, alumni, and invited campus guests.</li>
+        <li><strong>Under-18 Participants:</strong> Participants under the age of 18 must participate with the acknowledgment and consent of a parent or legal guardian. Submitting the survey confirms that such permission has been granted.</li>
+      </ul>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="clause">
+      <h2>3. Free Entry &amp; "No Purchase Necessary"</h2>
+      <p>
+        <strong>No purchase, donation, or stall order is required to enter or win the lucky draw.</strong> Purchasing pani puri does not increase or alter the odds of winning. Entry is earned solely by completing the student survey honestly on <code>lucky-draw.html</code>.
+      </p>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="clause">
+      <h2>4. Entry Limit &amp; Anti-Fraud Controls</h2>
+      <ul>
+        <li>Strictly <strong>one (1) entry per student</strong>.</li>
+        <li>Submissions with duplicate mobile numbers, duplicate emails, automated script attacks, or intentionally fabricated student details will be invalidated prior to the draw.</li>
+        <li>The committee reserves the right to disqualify entries that disrupt the integrity of the festival event.</li>
+      </ul>
+    </section>
+
+    <!-- Section 5 -->
+    <section class="clause">
+      <h2>5. Featured Prize Specifications</h2>
+      <div class="prize-box">
+        <strong>🎁 Designated Competition Prize:</strong>
+        <ul style="margin-top:8px;">
+          <li><strong>Item:</strong> One (1) T900 Ultra Smartwatch (49mm casing)</li>
+          <li><strong>Features:</strong> 2.09-inch HD touch screen, dual working buttons, wireless magnetic charger dock</li>
+          <li><strong>Reference Market Value:</strong> NPR 689 (Verified catalog price on Daraz Nepal)</li>
+        </ul>
+      </div>
+      <p>The prize is non-transferable, and no cash equivalents or item exchanges will be substituted.</p>
+    </section>
+
+    <!-- Section 6 -->
+    <section class="clause">
+      <h2>6. Random Drawing &amp; Winner Notification</h2>
+      <ul>
+        <li><strong>Draw Schedule:</strong> The draw will be conducted over the weekend immediately following the festival.</li>
+        <li><strong>Selection Process:</strong> The winner will be chosen at random using an automated digital script across all valid entries in the private Google Sheet registry.</li>
+        <li><strong>Notification:</strong> The selected winner will be contacted directly via WhatsApp/phone call and their submitted email address.</li>
+        <li><strong>Identity Verification:</strong> The winner must present a valid Xavier Academy student ID or recognized proof of identity to claim their smartwatch. Minors may be asked to receive their prize alongside a guardian.</li>
+        <li><strong>Unclaimed Prizes:</strong> If a winner cannot be reached or fails to verify eligibility within 5 calendar days, a secondary random draw will be conducted.</li>
+      </ul>
+    </section>
+
+    <!-- Section 7 -->
+    <section class="clause">
+      <h2>7. Food Ordering &amp; WhatsApp Checkout Terms</h2>
+      <ul>
+        <li>All food orders placed on <code>index.html</code> generate a unique ticket code (e.g., <code>XAT-XXXX-XXX</code>).</li>
+        <li><strong>Manual Verification:</strong> Orders are verified manually by stall volunteers when the customer shares their Kumari Bank QR payment screenshot via WhatsApp. The website does not execute automated banking clearance.</li>
+        <li><strong>Pickup:</strong> Customers must present their ticket number and confirmed payment at the stall counter for food collection.</li>
+      </ul>
+    </section>
+
+    <!-- Section 8 -->
+    <section class="clause">
+      <h2>8. Privacy Notice &amp; Data Protection</h2>
+      <p>We respect your privacy and handle student information responsibly:</p>
+      <ul>
+        <li><strong>What We Collect:</strong> Full name, WhatsApp/phone number, email, academic grade, study interests, and stall feedback.</li>
+        <li><strong>Storage &amp; Access:</strong> Data is transmitted directly to a private, access-restricted Google Sheet via Google Apps Script. No data is stored in publicly accessible client-side scripts or public CSV downloads.</li>
+        <li><strong>Purpose of Use:</strong> Information is used exclusively to:
+          <ol style="margin-top:6px;">
+            <li>Validate lucky draw entries and contact the prize winner.</li>
+            <li>Analyze aggregate student preference data for campus academic and festival planning.</li>
+            <li>Send opted-in event updates or educational notifications (which can be opted out of at any time).</li>
+          </ol>
+        </li>
+        <li><strong>No Third-Party Sharing:</strong> Student records will never be rented, sold, or shared with unauthorized commercial advertisers.</li>
+      </ul>
+    </section>
+
+    <div class="cta-row">
+      <a href="index.html" class="btn btn-primary">🥣 Return to Food Menu</a>
+      <a href="lucky-draw.html" class="btn btn-secondary">🎁 Complete Survey &amp; Enter Draw</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p><strong>Xavier Academy Tihar Festival</strong> • Official Organizing Committee</p>
+  <p style="margin-top:6px;">
+    <a href="index.html">Menu &amp; Ordering</a> | 
+    <a href="lucky-draw.html">Smartwatch Lucky Draw</a> | 
+    <a href="terms.html">Terms &amp; Privacy</a>
+  </p>
+  <p style="margin-top:8px; font-size:12px; color:#64748B;">Kathmandu, Nepal • Happy Tihar 🪔</p>
+</footer>
+
+</body>
+</html>
