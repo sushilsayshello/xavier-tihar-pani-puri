@@ -1,489 +1,271 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Win a T900 Ultra Smartwatch | Xavier Academy Tihar Survey</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root {
-  --primary: #F97316;
-  --primary-hover: #EA580C;
-  --secondary: #FACC15;
-  --accent: #16A34A;
-  --accent-hover: #15803D;
-  --bg-cream: #FFF8ED;
-  --text-dark: #222222;
-  --text-muted: #64748B;
-  --border-light: #F1E5D1;
-  --card-bg: #FFFFFF;
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-  --shadow-md: 0 8px 24px rgba(249,115,22,0.08);
-  --shadow-lg: 0 16px 36px rgba(0,0,0,0.08);
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--bg-cream);
-  color: var(--text-dark);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; line-height: 1.25; }
+# MASTER PROMPT: PREMIUM PANI PURI & FRUITY FOOD STALL WEBSITE REDESIGN
 
-/* Sticky Navigation */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 2px solid var(--secondary);
-  box-shadow: var(--shadow-sm);
-}
-.nav-content {
-  max-width: 1100px;
-  margin: auto;
-  padding: 14px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.nav-brand {
-  font-family: 'Poppins', sans-serif;
-  font-size: 19px;
-  font-weight: 800;
-  color: var(--primary);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-dark);
-  font-weight: 600;
-  font-size: 14px;
-  margin-left: 18px;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--primary); }
+Act as a senior UI/UX designer, frontend developer, branding specialist and conversion-rate optimisation expert.
 
-/* Prize Hero Showcase */
-.prize-hero {
-  background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
-  color: white;
-  padding: 55px 20px 70px;
-  border-bottom: 5px solid var(--secondary);
-}
-.prize-content {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
-  gap: 40px;
-}
-.prize-badge {
-  background: var(--secondary);
-  color: #7C2D12;
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-weight: 800;
-  font-size: 12px;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-.prize-hero h1 { font-size: 38px; color: #FFF; margin-bottom: 14px; }
-.prize-hero h1 span { color: var(--secondary); }
-.prize-hero p { color: #CBD5E1; font-size: 16px; margin-bottom: 20px; }
-.prize-specs {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 14px;
-  padding: 18px;
-  margin-bottom: 18px;
-  font-size: 14px;
-  color: #E2E8F0;
-  line-height: 1.8;
-}
-.prize-img-wrapper { text-align: center; }
-.prize-img {
-  width: 100%;
-  max-width: 320px;
-  border-radius: 20px;
-  border: 4px solid rgba(250, 204, 21, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  object-fit: cover;
-}
+I already have an existing Pani Puri ordering and customer survey website. Your task is to redesign and improve the entire website to achieve a premium, modern, colourful, attractive and professional user experience.
 
-/* Survey Form Wrapper */
-.main-wrapper { max-width: 820px; margin: -40px auto 60px; padding: 0 20px; position: relative; z-index: 10; }
-.survey-card {
-  background: var(--card-bg);
-  border-radius: 20px;
-  padding: 40px;
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-lg);
-}
-.survey-header { text-align: center; margin-bottom: 30px; }
-.survey-header h2 { font-size: 28px; color: var(--primary); margin-bottom: 6px; }
-.survey-header p { color: var(--text-muted); font-size: 15px; }
+**IMPORTANT: Do not just provide suggestions. Inspect my existing project, understand its functionality, and implement the changes directly in the code.**
 
-.notice-box {
-  background: #FFF7ED;
-  border: 1px solid #FFEDD5;
-  border-left: 4px solid var(--primary);
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin-bottom: 24px;
-  font-size: 14px;
-  color: #7C2D12;
-}
+## 1. DESIGN DIRECTION – PREMIUM UI/UX
 
-.form-group { margin-bottom: 20px; }
-label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; color: var(--text-dark); }
-input, select, textarea {
-  width: 100%;
-  padding: 13px 15px;
-  border: 1.5px solid var(--border-light);
-  border-radius: 10px;
-  font-size: 15px;
-  font-family: inherit;
-  background: white;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
-}
+Create a visually impressive, modern Indian/Nepali street-food brand website.
 
-.check-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  background: #FFFDF9;
-  border: 1px solid var(--border-light);
-  padding: 14px;
-  border-radius: 10px;
-  margin-bottom: 16px;
-  cursor: pointer;
-}
-.check-container input { width: auto; margin-top: 4px; cursor: pointer; }
-.check-container span { font-size: 13px; color: #475569; }
+Design inspiration:
+- Premium street-food brands.
+- Modern food delivery applications.
+- Swiggy and Zomato-style menu cards.
+- Modern landing pages with smooth interactions.
+- Colourful festival-inspired food branding.
 
-.btn-submit {
-  width: 100%;
-  background: var(--accent);
-  color: white;
-  padding: 16px;
-  font-size: 17px;
-  font-weight: 700;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
-  transition: background 0.2s, transform 0.1s;
-}
-.btn-submit:hover { background: var(--accent-hover); transform: translateY(-1px); }
-.btn-submit:disabled { background: #94A3B8; cursor: not-allowed; transform: none; box-shadow: none; }
+### Colour palette
+- Primary: Deep orange (#F97316)
+- Secondary: Yellow (#FACC15)
+- Accent: Fresh green (#16A34A)
+- Background: Warm cream (#FFF8ED)
+- Text: Dark charcoal (#222222)
+- White cards with subtle shadows.
 
-.hidden { display: none !important; }
+### Typography
+Use Google Fonts:
+- Headings: Poppins ExtraBold / Bold.
+- Body: Inter or Nunito Sans.
+- Prices: Poppins SemiBold.
 
-/* Success Card */
-.ticket-success {
-  text-align: center;
-  background: #ECFDF5;
-  border: 2px dashed var(--accent);
-  padding: 35px 25px;
-  border-radius: 16px;
-}
-.ticket-success h2 { color: var(--accent); font-size: 26px; }
-.ticket-num {
-  font-family: 'Poppins', sans-serif;
-  font-size: 32px;
-  font-weight: 900;
-  color: var(--accent);
-  background: white;
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: 12px;
-  margin: 18px 0;
-  border: 2px solid #A7F3D0;
-  letter-spacing: 1px;
-}
+Ensure consistent font sizes, spacing, margins, button styles, card radius and responsive layouts.
 
-/* Terms Summary Panel */
-.terms-panel {
-  background: white;
-  border-radius: 16px;
-  border: 1px solid var(--border-light);
-  padding: 28px;
-  margin-top: 30px;
-  font-size: 14px;
-  color: #475569;
-}
-.terms-panel h3 { color: #7C2D12; font-size: 18px; margin-bottom: 12px; }
-.terms-panel ol { padding-left: 20px; line-height: 1.8; }
+Avoid outdated fonts, excessive gradients, cluttered layouts and oversized unnecessary decorations.
 
-footer { background: #1E293B; color: #94A3B8; padding: 35px 20px; text-align: center; font-size: 14px; }
-footer a { color: var(--secondary); text-decoration: none; margin: 0 8px; font-weight: 600; }
-footer a:hover { text-decoration: underline; }
+## 2. HERO SECTION
 
-@media(max-width: 768px) {
-  .prize-content { grid-template-columns: 1fr; text-align: center; }
-  .survey-card { padding: 25px 20px; }
-}
-</style>
-</head>
-<body>
+Create an attractive full-width hero section featuring:
+- Large, appetising Pani Puri and Fruity product photography.
+- Eye-catching headline.
+- Short promotional description.
+- Prominent "Order Now" CTA.
+- Secondary "Take Our Survey" CTA.
+- Festival promotional badge.
+- Smooth entrance animations.
 
-<nav>
-  <div class="nav-content">
-    <a href="index.html" class="nav-brand">🎉 XAVIER TIHAR STALL</a>
-    <div class="nav-links">
-      <a href="index.html">← Back to Menu</a>
-      <a href="terms.html">Official Terms</a>
-    </div>
-  </div>
-</nav>
+The hero must immediately communicate what we sell and encourage customers to order.
 
-<section class="prize-hero">
-  <div class="prize-content">
-    <div>
-      <span class="prize-badge">Official Festival Special</span>
-      <h1>Help Us Serve You Better &amp; <span>WIN A SMARTWATCH!</span></h1>
-      <p>Take our quick survey, tell us your favourite street food flavours, and get automatically entered to win a brand-new T900 Ultra Smartwatch. No purchase necessary!</p>
+## 3. MENU – REPLACE SUGARCANE JUICE WITH FRUITY
 
-      <div class="prize-specs">
-        <strong>🎁 Featured Prize Details:</strong><br>
-        • <strong>Model:</strong> T900 Ultra Smartwatch (49mm casing)<br>
-        • <strong>Display:</strong> 2.09-inch HD full touch screen with dual working buttons<br>
-        • <strong>Charging:</strong> Wireless magnetic fast charging dock<br>
-      </div>
-      <p style="font-size:12px; color:#94A3B8;">* One verified student winner will be randomly drawn from the entry registry over the weekend.</p>
-    </div>
-    <div class="prize-img-wrapper">
-      <img src="https://img.drz.lazcdn.com/g/kf/Se26028f0ec634a50b7d5b52e57740dc0a.jpg_720x720q80.jpg" alt="T900 Ultra 49mm Smartwatch" class="prize-img">
-    </div>
-  </div>
-</section>
+Completely remove Sugarcane Juice from the menu and replace it with Fruity.
 
-<div class="main-wrapper">
-  <div class="survey-card">
-    <div class="survey-header">
-      <h2>🎓 Student Survey &amp; Draw Registration</h2>
-      <p>Complete the quick form below to claim your official Lucky Draw entry ticket.</p>
-    </div>
+Make Fruity visually attractive using colourful product imagery.
 
-    <div class="notice-box">
-      <strong>🪔 Free Participation:</strong> No food purchase or payment is required to enter. One entry allowed per student.
-    </div>
+Create modern product cards containing:
+- Product image.
+- Product name.
+- Short description.
+- Price.
+- Quantity selector.
+- Add to cart button.
 
-    <form id="entryForm">
-      <div class="form-group">
-        <label for="name">Full Name *</label>
-        <input id="name" required maxlength="80" placeholder="e.g. Aarav Sharma">
-      </div>
+Preserve all existing product prices and calculations unless explicitly instructed otherwise.
 
-      <div class="form-group">
-        <label for="phone">Contact Number (WhatsApp enabled) *</label>
-        <input id="phone" required maxlength="15" placeholder="98XXXXXXXX">
-      </div>
+Ensure the Fruity product is included in the cart, order summary and WhatsApp checkout calculations.
 
-      <div class="form-group">
-        <label for="email">Email Address *</label>
-        <input id="email" type="email" required maxlength="120" placeholder="student@example.com">
-      </div>
+## 4. CUSTOMER SURVEY – MAKE IT A MAJOR FEATURE
 
-      <div class="form-group">
-        <label for="year">Which year / level are you studying? *</label>
-        <select id="year" required onchange="toggleOtherInput('year', 'yearOther')">
-          <option value="">Choose year or role</option>
-          <option value="Grade 11">Grade 11</option>
-          <option value="Grade 12">Grade 12</option>
-          <option value="Other">Other (Please specify below)</option>
-        </select>
-        <input id="yearOther" class="hidden" style="margin-top:8px;" maxlength="60" placeholder="Specify your grade / affiliation">
-      </div>
+The customer survey must be significantly larger, more attractive and more prominent.
 
-      <div class="form-group">
-        <label for="age">Are you 18 or above? *</label>
-        <select id="age" required>
-          <option value="under18">No (Under 18)</option>
-          <option value="18+">Yes (18 or above)</option>
-        </select>
-      </div>
+Do not make it look like a small footer form.
 
-      <div class="form-group">
-        <label for="plan">Favourite Pani Puri option from our Stall *</label>
-        <select id="plan" required onchange="toggleOtherInput('plan', 'planOther')">
-          <option value="">Choose favourite item</option>
-          <option value="Normal Pani Puri">Normal Pani Puri (Authentic Tangy)</option>
-          <option value="Chicken Keema Pani Puri">Chicken Keema Pani Puri (Momo Jhol)</option>
-          <option value="Buff Keema Pani Puri">Buff Keema Pani Puri (Momo Jhol)</option>
-          <option value="Fruity Pani Puri">Fruity Pani Puri (Mango Gravy)</option>
-          <option value="Cheese Pani Puri">Cheese Pani Puri</option>
-          <option value="Chocolate Pani Puri">Chocolate Pani Puri</option>
-          <option value="Daal Pani Puri">Daal Pani Puri</option>
-          <option value="Dahi Puri">Dahi Puri</option>
-          <option value="Other">Other (Suggest an idea below)</option>
-        </select>
-        <input id="planOther" class="hidden" style="margin-top:8px;" maxlength="100" placeholder="Describe your favourite flavor idea">
-      </div>
+Create a dedicated full-width survey section with a contrasting background, attractive heading and clear explanation.
 
-      <div class="form-group">
-        <label for="country">Post +2 Academic Plans</label>
-        <select id="country" onchange="toggleOtherInput('country', 'countryOther')">
-          <option value="Not decided">Still deciding / Undecided</option>
-          <option value="Study in Nepal">Study in Nepal</option>
-          <option value="Australia">Study in Australia</option>
-          <option value="United States">Study in United States</option>
-          <option value="Canada">Study in Canada</option>
-          <option value="United Kingdom">Study in United Kingdom</option>
-          <option value="Japan / South Korea">Study in Japan / South Korea</option>
-          <option value="Germany">Study in Germany</option>
-          <option value="Work / Business">Work or start a business</option>
-          <option value="Other">Other (Please specify below)</option>
-        </select>
-        <input id="countryOther" class="hidden" style="margin-top:8px;" maxlength="80" placeholder="Specify destination or plan">
-      </div>
+Headline:
+"Help Us Serve You Better & WIN A SMARTWATCH!"
 
-      <div class="form-group">
-        <label for="subject">Feedback &amp; Stall Improvement Suggestions</label>
-        <textarea id="subject" rows="2" maxlength="200" placeholder="Any suggestions or flavours you'd love us to serve?"></textarea>
-      </div>
+Subheading:
+"Take our quick survey, share your preferences and get a chance to win a T900 Ultra Smartwatch!"
 
-      <label class="check-container">
-        <input type="checkbox" id="terms" required>
-        <span><strong>1. Terms &amp; Conditions:</strong> I have read and agree to the <a href="terms.html" target="_blank" style="color:var(--primary); font-weight:700;">Lucky Draw Terms</a>. If I am under 18, my parent or guardian approves my participation. *</span>
-      </label>
+### Survey information to collect
 
-      <label class="check-container">
-        <input type="checkbox" id="marketing" required>
-        <span><strong>2. Event Communications:</strong> I agree to receive lucky draw announcements, winner notices, and future festival updates from the organizers. *</span>
-      </label>
+1. Full name.
+2. Mobile/contact number.
+3. Email address.
+4. Current study level:
+   - Grade 11
+   - Grade 12
+5. Favourite Pani Puri option.
+6. Preferred flavours.
+7. Feedback and suggestions.
 
-      <button type="submit" id="submitBtn" class="btn-submit">🎁 SUBMIT SURVEY &amp; ENTER DRAW</button>
-    </form>
+Use modern input fields, radio buttons, selectable cards and clear validation.
 
-    <div id="success" class="hidden ticket-success">
-      <h2>🎉 Entry Successfully Recorded!</h2>
-      <p style="color:#065F46; font-size:15px; margin-top:6px;">Your unique Lucky Draw ticket code has been logged into our private spreadsheet registry:</p>
-      <div id="entryNumber" class="ticket-num"></div>
-      <p style="font-size:14px; color:#475569;">Please take a screenshot of this code. The winner will be drawn and notified via email/phone over the weekend.</p>
-      <a href="index.html" style="display:inline-block; margin-top:20px; font-weight:700; color:var(--primary); text-decoration:none;">← Return to Pani Puri Menu</a>
-    </div>
+Make the form easy to complete on mobile devices.
 
-    <section class="terms-panel">
-      <h3>📜 Lucky Draw Rules Summary</h3>
-      <ol>
-        <li><strong>Eligibility:</strong> Open to Xavier Academy students and guests. Under-18 participants must have guardian consent.</li>
-        <li><strong>No Purchase Necessary:</strong> Free entry via this survey. No food purchase required.</li>
-        <li><strong>Prize:</strong> One (1) T900 Ultra Smartwatch (49mm, 2.09" Display). No cash substitutes.</li>
-        <li><strong>Winner Selection:</strong> Electronic random draw from the spreadsheet registry post-festival.</li>
-        <li><strong>Read Full Terms:</strong> View our complete <a href="terms.html" style="color:var(--primary); font-weight:600;">Terms &amp; Privacy Conditions</a>.</li>
-      </ol>
-    </section>
-  </div>
-</div>
+Do not collect unnecessary sensitive information.
 
-<footer>
-  <p><strong>Xavier Academy Tihar Festival</strong> • Smartwatch Lucky Draw Campaign</p>
-  <p style="margin-top:6px;"><a href="index.html">Pani Puri Menu</a> | <a href="terms.html">Terms &amp; Privacy Policy</a></p>
-</footer>
+Clearly explain how survey participation qualifies for the lucky draw. Do not falsely promise guaranteed prizes or entries.
 
-<script>
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXFdMCajY9Se3R7u-Nk_3NVbSXCQiOUVRUpQCTOAPGSDcR42H4O1u7DfHhnEhQJh_3/exec";
+## 5. LUCKY DRAW – T900 ULTRA SMARTWATCH
 
-function toggleOtherInput(selectId, inputId) {
-  const selectEl = document.getElementById(selectId);
-  const inputEl = document.getElementById(inputId);
-  if (selectEl.value === "Other") {
-    inputEl.classList.remove("hidden");
-    inputEl.focus();
-  } else {
-    inputEl.classList.add("hidden");
-    inputEl.value = "";
-  }
-}
+Use the actual prize product specified below.
 
-function createEntryId(){
-  return "XAL-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2,5).toUpperCase();
-}
+Prize:
+T900 Ultra Smartwatch, 49mm, 2.09-inch screen, rotating dual buttons, wireless charging.
 
-document.getElementById("entryForm").addEventListener("submit", async function(e){
-  e.preventDefault();
+Listed reference price: NPR 689.
 
-  const submitBtn = document.getElementById("submitBtn");
-  const phone = document.getElementById("phone").value.trim();
+Product reference:
+https://www.daraz.com.np/products/i477677942-s2270982848.html
 
-  if(!/^[0-9+\-\s]{7,15}$/.test(phone)){
-    alert("Please enter a valid contact phone number (7 to 15 digits).");
-    return;
-  }
+Create an attractive promotional section featuring:
+- Large smartwatch product image.
+- "WIN A SMARTWATCH!" headline.
+- Prize description.
+- How to participate.
+- Entry eligibility.
+- Draw date placeholder.
+- Winner announcement placeholder.
+- Link to separate Terms & Conditions page.
 
-  // Handle "Other" inputs
-  let yearVal = document.getElementById("year").value;
-  const yearOther = document.getElementById("yearOther").value.trim();
-  if (yearVal === "Other" && yearOther) {
-    yearVal = "Other: " + yearOther;
-  }
+Do not substitute another smartwatch model.
 
-  let planVal = document.getElementById("plan").value;
-  const planOther = document.getElementById("planOther").value.trim();
-  if (planVal === "Other" && planOther) {
-    planVal = "Other: " + planOther;
-  }
+Use an accurate product image. Do not misrepresent the product as a more expensive Apple or Samsung smartwatch.
 
-  let countryVal = document.getElementById("country").value;
-  const countryOther = document.getElementById("countryOther").value.trim();
-  if (countryVal === "Other" && countryOther) {
-    countryVal = "Other: " + countryOther;
-  }
+## 6. SEPARATE WEBPAGES
 
-  const entry = {
-    type: "survey",
-    entryId: createEntryId(),
-    name: document.getElementById("name").value.trim(),
-    phone: phone,
-    email: document.getElementById("email").value.trim(),
-    year: yearVal,
-    ageGroup: document.getElementById("age").value,
-    futurePlan: planVal,
-    destination: countryVal,
-    subject: document.getElementById("subject").value.trim(),
-    termsAccepted: true,
-    marketingConsent: true,
-    consentTime: new Date().toISOString(),
-    submittedAt: new Date().toISOString()
-  };
+Create separate pages with consistent branding:
 
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Recording Entry...";
+A. Main ordering page.
+B. Lucky Draw information page.
+C. Terms & Conditions page.
 
-  try {
-    await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(entry)
-    });
+Terms & Conditions must explain:
+- Eligibility.
+- How to participate.
+- One entry per eligible participant, if that is the chosen rule.
+- Draw date and winner selection process.
+- How the winner will be contacted.
+- Prize collection arrangements.
+- Privacy and use of customer information.
+- Disqualification conditions.
+- Any other relevant conditions.
 
-    document.getElementById("entryNumber").textContent = entry.entryId;
-    document.getElementById("entryForm").classList.add("hidden");
-    document.getElementById("success").classList.remove("hidden");
-    document.getElementById("success").scrollIntoView({behavior: "smooth"});
-  } catch(err) {
-    alert("We could not confirm your entry. Please check your internet connection or contact the stall team.");
-    submitBtn.disabled = false;
-    submitBtn.textContent = "🎁 SUBMIT SURVEY & ENTER DRAW";
-  }
-});
-</script>
-</body>
-</html>
+Do not invent an official draw date or claim that a draw has already happened.
+
+## 7. WHATSAPP ORDERING SYSTEM
+
+Preserve and improve the existing WhatsApp ordering functionality.
+
+After customers select products and quantities:
+- Calculate the total automatically.
+- Display an itemised order summary.
+- Show quantities and prices.
+- Display the final amount.
+- Provide a clear WhatsApp checkout button.
+
+When clicked, generate a properly formatted WhatsApp message containing:
+- Customer name.
+- Selected products.
+- Quantities.
+- Individual prices.
+- Total payable.
+- Contact number.
+- Order instructions.
+
+Use my existing WhatsApp number from the project. Do not invent or replace it.
+
+Allow customers to attach or submit payment screenshots through the existing supported process. Never claim a payment has been verified automatically.
+
+## 8. PAYMENT EXPERIENCE
+
+Create a clear payment section with:
+- Existing payment QR code.
+- Payment instructions.
+- Amount payable.
+- Payment screenshot submission instructions.
+- WhatsApp confirmation CTA.
+
+Do not invent payment details, bank accounts or QR codes.
+
+## 9. RESPONSIVE DESIGN
+
+The website must work perfectly on:
+- Android phones.
+- iPhones.
+- Tablets.
+- Laptops.
+- Desktop screens.
+
+Mobile-first priorities:
+- Easy navigation.
+- Large touch-friendly buttons.
+- Readable text.
+- Properly sized product cards.
+- Sticky cart or order CTA where appropriate.
+- No horizontal scrolling.
+- Fast loading.
+
+## 10. ANIMATIONS AND INTERACTIONS
+
+Implement subtle premium interactions:
+- Smooth scrolling.
+- Hover effects.
+- Button transitions.
+- Cart update animations.
+- Survey progress indicator.
+- Attractive success messages.
+- Responsive navigation.
+- Smooth page transitions where supported.
+
+Avoid excessive animations that slow down the website.
+
+## 11. TECHNICAL REQUIREMENTS
+
+Before editing:
+1. Inspect all existing project files.
+2. Identify the framework and existing functionality.
+3. Identify WhatsApp number, payment details, prices and existing assets.
+4. Preserve working functionality.
+5. Reuse existing code wherever appropriate.
+
+Implementation requirements:
+- Clean, reusable code.
+- Proper semantic HTML.
+- Accessible forms.
+- SEO-friendly page titles and metadata.
+- Optimised images.
+- Secure handling of customer information.
+- No exposed API keys or secret credentials.
+- No unnecessary dependencies.
+- No fake submission confirmations.
+
+Do not put customer information into a publicly downloadable CSV file.
+
+If persistent survey storage is required, use an appropriate secure backend or database. Never store private customer information in publicly accessible frontend files.
+
+## 12. FINAL QUALITY CHECK
+
+Before completing the project, test:
+
+- All navigation links.
+- All product cards.
+- Fruity replacing Sugarcane Juice.
+- Quantity selectors.
+- Cart calculations.
+- WhatsApp message generation.
+- Payment instructions.
+- Survey validation.
+- Lucky draw page.
+- Terms & Conditions page.
+- Mobile responsiveness.
+- Image loading.
+- Console errors.
+
+Fix all errors before finishing.
+
+## FINAL INSTRUCTION
+
+I want a premium, professional, visually stunning food ordering website, not a basic student project.
+
+Prioritise customer conversion, beautiful food photography, excellent typography, a large customer survey and an attractive smartwatch lucky draw promotion.
+
+Implement the complete redesign directly in my existing project.
+
+Do not remove existing working features. Do not invent business information. If something essential is missing, ask me before making assumptions.
+
+At the end, provide a summary of all files modified, new features implemented and tests completed.
