@@ -3,146 +3,400 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Xavier Academy | Tihar Lucky Draw</title>
+<title>Win a T900 Ultra Smartwatch | Xavier Academy Tihar Survey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--red:#861b2a;--gold:#f5c35c;--cream:#fff8eb;--green:#247448}
-*{box-sizing:border-box}
-body{margin:0;background:var(--cream);font-family:Arial,sans-serif;color:#30251e;line-height:1.5}
-header{text-align:center;background:linear-gradient(135deg,#5e101d,#a52d38);color:white;padding:30px 15px;border-bottom:5px solid var(--gold)}
-header h1{margin:8px}
-header h2{color:#ffdf91}
-main{max-width:760px;margin:auto;padding:18px}
-.panel{background:white;border:1px solid #eadfc9;border-radius:14px;padding:22px;margin:18px 0}
-h2,h3{color:var(--red)}
-input,select,textarea{width:100%;padding:12px;margin:7px 0 15px;border:1px solid #d7c9b5;border-radius:8px;font-size:15px}
-label{font-weight:bold;font-size:14px}
-.check{display:flex;gap:10px;align-items:flex-start;margin:15px 0;font-weight:normal;cursor:pointer}
-.check input{width:auto;margin-top:4px}
-button{background:var(--green);color:white;width:100%;padding:15px;border:0;border-radius:8px;font-size:15px;font-weight:bold;cursor:pointer}
-button:disabled{background:#8cb39d;cursor:not-allowed}
-.notice{background:#fff0c8;padding:15px;border-radius:10px}
-.small{font-size:12px;color:#766b60}
-.hidden{display:none}
-.ticket{font-size:24px;font-weight:bold;text-align:center;color:var(--red);background:#fff3d9;padding:14px;border-radius:8px}
-a{color:var(--red);font-weight:bold}
-footer{text-align:center;padding:20px;color:#766b60}
+:root {
+  --primary: #F97316;
+  --primary-hover: #EA580C;
+  --secondary: #FACC15;
+  --accent: #16A34A;
+  --accent-hover: #15803D;
+  --bg-cream: #FFF8ED;
+  --text-dark: #222222;
+  --text-muted: #64748B;
+  --border-light: #F1E5D1;
+  --card-bg: #FFFFFF;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 8px 24px rgba(249,115,22,0.08);
+  --shadow-lg: 0 16px 36px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; line-height: 1.25; }
+
+/* Sticky Navigation */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+.nav-content {
+  max-width: 1100px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-brand {
+  font-family: 'Poppins', sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: 18px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--primary); }
+
+/* Prize Hero Showcase */
+.prize-hero {
+  background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+  color: white;
+  padding: 55px 20px 70px;
+  border-bottom: 5px solid var(--secondary);
+}
+.prize-content {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 40px;
+}
+.prize-badge {
+  background: var(--secondary);
+  color: #7C2D12;
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.prize-hero h1 { font-size: 38px; color: #FFF; margin-bottom: 14px; }
+.prize-hero h1 span { color: var(--secondary); }
+.prize-hero p { color: #CBD5E1; font-size: 16px; margin-bottom: 20px; }
+.prize-specs {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: #E2E8F0;
+  line-height: 1.8;
+}
+.prize-img-wrapper { text-align: center; }
+.prize-img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 20px;
+  border: 4px solid rgba(250, 204, 21, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+}
+
+/* Survey Form Wrapper */
+.main-wrapper { max-width: 820px; margin: -40px auto 60px; padding: 0 20px; position: relative; z-index: 10; }
+.survey-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-lg);
+}
+.survey-header { text-align: center; margin-bottom: 30px; }
+.survey-header h2 { font-size: 28px; color: var(--primary); margin-bottom: 6px; }
+.survey-header p { color: var(--text-muted); font-size: 15px; }
+
+.notice-box {
+  background: #FFF7ED;
+  border: 1px solid #FFEDD5;
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: #7C2D12;
+}
+
+.form-group { margin-bottom: 20px; }
+label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; color: var(--text-dark); }
+input, select, textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1.5px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  background: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
+.check-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #FFFDF9;
+  border: 1px solid var(--border-light);
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+.check-container input { width: auto; margin-top: 4px; cursor: pointer; }
+.check-container span { font-size: 13px; color: #475569; }
+
+.btn-submit {
+  width: 100%;
+  background: var(--accent);
+  color: white;
+  padding: 16px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-submit:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-submit:disabled { background: #94A3B8; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.hidden { display: none !important; }
+
+/* Success Card */
+.ticket-success {
+  text-align: center;
+  background: #ECFDF5;
+  border: 2px dashed var(--accent);
+  padding: 35px 25px;
+  border-radius: 16px;
+}
+.ticket-success h2 { color: var(--accent); font-size: 26px; }
+.ticket-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--accent);
+  background: white;
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 12px;
+  margin: 18px 0;
+  border: 2px solid #A7F3D0;
+  letter-spacing: 1px;
+}
+
+/* Terms Summary Panel */
+.terms-panel {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  padding: 28px;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #475569;
+}
+.terms-panel h3 { color: #7C2D12; font-size: 18px; margin-bottom: 12px; }
+.terms-panel ol { padding-left: 20px; line-height: 1.8; }
+
+footer { background: #1E293B; color: #94A3B8; padding: 35px 20px; text-align: center; font-size: 14px; }
+footer a { color: var(--secondary); text-decoration: none; margin: 0 8px; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+
+@media(max-width: 768px) {
+  .prize-content { grid-template-columns: 1fr; text-align: center; }
+  .survey-card { padding: 25px 20px; }
+}
 </style>
 </head>
 <body>
-<header>
- <h1>🎉 XAVIER ACADEMY 🎉</h1>
- <h2>🪔 TIHAR FESTIVAL LUCKY DRAW 🪔</h2>
- <p>Share your dreams. Enter the draw. Win a smartwatch!</p>
-</header>
 
-<main>
- <div class="notice">
-  <h2 style="text-align:center">🎁 WIN A SMARTWATCH!</h2>
-  <p style="text-align:center">One eligible winner will be selected at the end of the festival.</p>
-  <p style="text-align:center"><strong>No purchase is necessary to enter.</strong></p>
- </div>
-
- <section class="panel">
-  <h2>🎓 Student Survey &amp; Lucky Draw Entry</h2>
-  <p>Please complete the survey below to enter the lucky draw.</p>
-
-  <form id="entryForm">
-   <label for="name">Full name *</label>
-   <input id="name" required maxlength="80" placeholder="e.g. Aarav Sharma">
-
-   <label for="phone">Contact number *</label>
-   <input id="phone" required maxlength="15" placeholder="98XXXXXXXX">
-
-   <label for="email">Email address *</label>
-   <input id="email" type="email" required maxlength="120" placeholder="student@example.com">
-
-   <label for="year">Which year / level are you studying? *</label>
-   <select id="year" required onchange="toggleOtherInput('year', 'yearOther')">
-    <option value="">Choose year</option>
-    <option value="Year 11">Year 11</option>
-    <option value="Year 12">Year 12</option>
-    <option value="Other">Other (Please specify below)</option>
-   </select>
-   <input id="yearOther" class="hidden" maxlength="60" placeholder="Specify your year / class / affiliation">
-
-   <label for="age">Are you 18 or above? *</label>
-   <select id="age" required>
-    <option value="">Choose an answer</option>
-    <option value="under18">No (Under 18)</option>
-    <option value="18+">Yes (18 or above)</option>
-   </select>
-
-   <label for="plan">What are your plans after +2? *</label>
-   <select id="plan" required onchange="toggleOtherInput('plan', 'planOther')">
-    <option value="">Choose your plan</option>
-    <option value="Study abroad">Study abroad</option>
-    <option value="Study in Nepal">Study in Nepal</option>
-    <option value="Work or start a business">Work or start a business</option>
-    <option value="Take a gap year">Take a gap year</option>
-    <option value="Still deciding">Still deciding</option>
-    <option value="Other">Other (Please specify below)</option>
-   </select>
-   <input id="planOther" class="hidden" maxlength="100" placeholder="Specify your future plans">
-
-   <label for="country">Which country interests you for further study?</label>
-   <select id="country" onchange="toggleOtherInput('country', 'countryOther')">
-    <option value="">Choose country / option</option>
-    <option value="Australia">Australia</option>
-    <option value="United Kingdom">United Kingdom</option>
-    <option value="United States">United States</option>
-    <option value="Canada">Canada</option>
-    <option value="Japan">Japan</option>
-    <option value="South Korea">South Korea</option>
-    <option value="Germany">Germany</option>
-    <option value="Other">Other (Please specify below)</option>
-    <option value="Not decided / Not applicable">Not decided / Not applicable</option>
-   </select>
-   <input id="countryOther" class="hidden" maxlength="80" placeholder="Specify country name">
-
-   <label for="subject">What subject or course interests you?</label>
-   <input id="subject" maxlength="120" placeholder="e.g. IT, Business, Engineering, Medicine">
-
-   <div class="notice">
-    <strong>Consent &amp; Communication</strong>
-    <p>Please accept both terms below to complete your lucky draw submission.</p>
-   </div>
-
-   <label class="check">
-    <input type="checkbox" id="terms" required>
-    <span><strong>1. Terms &amp; Rules:</strong> I agree to the lucky-draw terms and privacy guidelines. If I am under 18, my parent or guardian approves my participation. *</span>
-   </label>
-
-   <label class="check">
-    <input type="checkbox" id="marketing" required>
-    <span><strong>2. Future Updates:</strong> I agree to receive future promotional messages, offers, and educational updates from the event organisers. *</span>
-   </label>
-
-   <button type="submit" id="submitBtn">🎁 SUBMIT MY LUCKY DRAW ENTRY</button>
-  </form>
-
-  <div id="success" class="hidden">
-   <h2 style="text-align:center">🎉 Thank you for entering!</h2>
-   <p style="text-align:center">Your entry reference:</p>
-   <div id="entryNumber" class="ticket"></div>
-   <p style="text-align:center">Please take a screenshot of this reference. The winner will be contacted directly.</p>
+<nav>
+  <div class="nav-content">
+    <a href="index.html" class="nav-brand">🎉 XAVIER TIHAR STALL</a>
+    <div class="nav-links">
+      <a href="index.html">← Back to Menu</a>
+      <a href="terms.html">Official Terms</a>
+    </div>
   </div>
- </section>
+</nav>
 
- <section class="panel" id="termsSection">
-  <h2>📜 Terms &amp; Conditions</h2>
-  <ol>
-   <li><strong>Eligibility:</strong> Students may enter subject to event guidelines and rules.</li>
-   <li><strong>No purchase:</strong> No food purchase or payment is required to enter.</li>
-   <li><strong>Prize:</strong> One smartwatch.</li>
-   <li><strong>Entry limit:</strong> One entry per person. Duplicate entries may be disqualified.</li>
-   <li><strong>Winner selection:</strong> The winner will be selected randomly from the entries after the festival.</li>
-  </ol>
- </section>
+<section class="prize-hero">
+  <div class="prize-content">
+    <div>
+      <span class="prize-badge">Official Festival Special</span>
+      <h1>Help Us Serve You Better &amp; <span>WIN A SMARTWATCH!</span></h1>
+      <p>Take our quick survey, tell us your favourite street food flavours, and get automatically entered to win a brand-new T900 Ultra Smartwatch. No purchase necessary!</p>
 
- <p style="text-align:center"><a href="index.html">← Return to Pani Puri Menu</a></p>
-</main>
+      <div class="prize-specs">
+        <strong>🎁 Featured Prize Details:</strong><br>
+        • <strong>Model:</strong> T900 Ultra Smartwatch (49mm casing)<br>
+        • <strong>Display:</strong> 2.09-inch HD full touch screen with dual working buttons<br>
+        • <strong>Charging:</strong> Wireless magnetic fast charging dock<br>
+        • <strong>Reference Value:</strong> NPR 689 (Verified Daraz Nepal catalog reference)
+      </div>
+      <p style="font-size:12px; color:#94A3B8;">* One verified student winner will be randomly drawn from the entry registry over the weekend.</p>
+    </div>
+    <div class="prize-img-wrapper">
+      <img src="https://img.drz.lazcdn.com/g/kf/Se26028f0ec634a50b7d5b52e57740dc0a.jpg_720x720q80.jpg" alt="T900 Ultra 49mm Smartwatch" class="prize-img">
+    </div>
+  </div>
+</section>
 
-<footer>Xavier Academy Tihar Festival 🪔</footer>
+<div class="main-wrapper">
+  <div class="survey-card">
+    <div class="survey-header">
+      <h2>🎓 Student Survey &amp; Draw Registration</h2>
+      <p>Complete the quick form below to claim your official Lucky Draw entry ticket.</p>
+    </div>
+
+    <div class="notice-box">
+      <strong>🪔 Free Participation:</strong> No food purchase or payment is required to enter. One entry allowed per student.
+    </div>
+
+    <form id="entryForm">
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input id="name" required maxlength="80" placeholder="e.g. Aarav Sharma">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Contact Number (WhatsApp enabled) *</label>
+        <input id="phone" required maxlength="15" placeholder="98XXXXXXXX">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input id="email" type="email" required maxlength="120" placeholder="student@example.com">
+      </div>
+
+      <div class="form-group">
+        <label for="year">Which year / level are you studying? *</label>
+        <select id="year" required onchange="toggleOtherInput('year', 'yearOther')">
+          <option value="">Choose year or role</option>
+          <option value="Grade 11">Grade 11</option>
+          <option value="Grade 12">Grade 12</option>
+          <option value="Other">Other (Please specify below)</option>
+        </select>
+        <input id="yearOther" class="hidden" style="margin-top:8px;" maxlength="60" placeholder="Specify your grade / affiliation">
+      </div>
+
+      <div class="form-group">
+        <label for="age">Are you 18 or above? *</label>
+        <select id="age" required>
+          <option value="under18">No (Under 18)</option>
+          <option value="18+">Yes (18 or above)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="plan">Favourite Pani Puri option from our Stall *</label>
+        <select id="plan" required onchange="toggleOtherInput('plan', 'planOther')">
+          <option value="">Choose favourite item</option>
+          <option value="Normal Pani Puri">Normal Pani Puri (Authentic Tangy)</option>
+          <option value="Chicken Keema Pani Puri">Chicken Keema Pani Puri (Momo Jhol)</option>
+          <option value="Buff Keema Pani Puri">Buff Keema Pani Puri (Momo Jhol)</option>
+          <option value="Fruity Pani Puri">Fruity Pani Puri (Mango Gravy)</option>
+          <option value="Cheese Pani Puri">Cheese Pani Puri</option>
+          <option value="Chocolate Pani Puri">Chocolate Pani Puri</option>
+          <option value="Daal Pani Puri">Daal Pani Puri</option>
+          <option value="Dahi Puri">Dahi Puri</option>
+          <option value="Other">Other (Suggest an idea below)</option>
+        </select>
+        <input id="planOther" class="hidden" style="margin-top:8px;" maxlength="100" placeholder="Describe your favourite flavor idea">
+      </div>
+
+      <div class="form-group">
+        <label for="country">Post +2 Academic Plans</label>
+        <select id="country" onchange="toggleOtherInput('country', 'countryOther')">
+          <option value="Not decided">Still deciding / Undecided</option>
+          <option value="Study in Nepal">Study in Nepal</option>
+          <option value="Australia">Study in Australia</option>
+          <option value="United States">Study in United States</option>
+          <option value="Canada">Study in Canada</option>
+          <option value="United Kingdom">Study in United Kingdom</option>
+          <option value="Japan / South Korea">Study in Japan / South Korea</option>
+          <option value="Germany">Study in Germany</option>
+          <option value="Work / Business">Work or start a business</option>
+          <option value="Other">Other (Please specify below)</option>
+        </select>
+        <input id="countryOther" class="hidden" style="margin-top:8px;" maxlength="80" placeholder="Specify destination or plan">
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Feedback &amp; Stall Improvement Suggestions</label>
+        <textarea id="subject" rows="2" maxlength="200" placeholder="Any suggestions or flavours you'd love us to serve?"></textarea>
+      </div>
+
+      <label class="check-container">
+        <input type="checkbox" id="terms" required>
+        <span><strong>1. Terms &amp; Conditions:</strong> I have read and agree to the <a href="terms.html" target="_blank" style="color:var(--primary); font-weight:700;">Lucky Draw Terms</a>. If I am under 18, my parent or guardian approves my participation. *</span>
+      </label>
+
+      <label class="check-container">
+        <input type="checkbox" id="marketing" required>
+        <span><strong>2. Event Communications:</strong> I agree to receive lucky draw announcements, winner notices, and future festival updates from the organizers. *</span>
+      </label>
+
+      <button type="submit" id="submitBtn" class="btn-submit">🎁 SUBMIT SURVEY &amp; ENTER DRAW</button>
+    </form>
+
+    <div id="success" class="hidden ticket-success">
+      <h2>🎉 Entry Successfully Recorded!</h2>
+      <p style="color:#065F46; font-size:15px; margin-top:6px;">Your unique Lucky Draw ticket code has been logged into our private spreadsheet registry:</p>
+      <div id="entryNumber" class="ticket-num"></div>
+      <p style="font-size:14px; color:#475569;">Please take a screenshot of this code. The winner will be drawn and notified via email/phone over the weekend.</p>
+      <a href="index.html" style="display:inline-block; margin-top:20px; font-weight:700; color:var(--primary); text-decoration:none;">← Return to Pani Puri Menu</a>
+    </div>
+
+    <section class="terms-panel">
+      <h3>📜 Lucky Draw Rules Summary</h3>
+      <ol>
+        <li><strong>Eligibility:</strong> Open to Xavier Academy students and guests. Under-18 participants must have guardian consent.</li>
+        <li><strong>No Purchase Necessary:</strong> Free entry via this survey. No food purchase required.</li>
+        <li><strong>Prize:</strong> One (1) T900 Ultra Smartwatch (49mm, 2.09" Display). No cash substitutes.</li>
+        <li><strong>Winner Selection:</strong> Electronic random draw from the spreadsheet registry post-festival.</li>
+        <li><strong>Read Full Terms:</strong> View our complete <a href="terms.html" style="color:var(--primary); font-weight:600;">Terms &amp; Privacy Conditions</a>.</li>
+      </ol>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <p><strong>Xavier Academy Tihar Festival</strong> • Smartwatch Lucky Draw Campaign</p>
+  <p style="margin-top:6px;"><a href="index.html">Pani Puri Menu</a> | <a href="terms.html">Terms &amp; Privacy Policy</a></p>
+</footer>
 
 <script>
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXFdMCajY9Se3R7u-Nk_3NVbSXCQiOUVRUpQCTOAPGSDcR42H4O1u7DfHhnEhQJh_3/exec";
@@ -160,8 +414,7 @@ function toggleOtherInput(selectId, inputId) {
 }
 
 function createEntryId(){
-  return "XAL-" + Date.now().toString(36).toUpperCase() + "-" +
-  Math.random().toString(36).slice(2,5).toUpperCase();
+  return "XAL-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2,5).toUpperCase();
 }
 
 document.getElementById("entryForm").addEventListener("submit", async function(e){
@@ -171,7 +424,7 @@ document.getElementById("entryForm").addEventListener("submit", async function(e
   const phone = document.getElementById("phone").value.trim();
 
   if(!/^[0-9+\-\s]{7,15}$/.test(phone)){
-    alert("Please enter a valid phone number (7 to 15 digits).");
+    alert("Please enter a valid contact phone number (7 to 15 digits).");
     return;
   }
 
@@ -212,7 +465,7 @@ document.getElementById("entryForm").addEventListener("submit", async function(e
   };
 
   submitBtn.disabled = true;
-  submitBtn.textContent = "Submitting Entry...";
+  submitBtn.textContent = "Recording Entry...";
 
   try {
     await fetch(GOOGLE_SCRIPT_URL, {
@@ -229,7 +482,7 @@ document.getElementById("entryForm").addEventListener("submit", async function(e
   } catch(err) {
     alert("We could not confirm your entry. Please check your internet connection or contact the stall team.");
     submitBtn.disabled = false;
-    submitBtn.textContent = "🎁 SUBMIT MY LUCKY DRAW ENTRY";
+    submitBtn.textContent = "🎁 SUBMIT SURVEY & ENTER DRAW";
   }
 });
 </script>
